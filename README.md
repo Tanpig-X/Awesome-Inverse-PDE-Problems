@@ -6,13 +6,13 @@ A curated collection of papers and code on **inverse problems**, **inverse desig
 
 Zhentao Tan, Yuze Hao, Boyi Zou, Mingsheng Long, Yi Yang, and Gang Bao.
 
-**[Website](https://tanpig-x.github.io/Awesome-Inverse-PDE-problems/) · [Paper](https://arxiv.org/abs/2605.16966) · [PDF](https://arxiv.org/pdf/2605.16966) · [Full Paper List](https://tanpig-x.github.io/Awesome-Inverse-PDE-problems/#view-gallery)**
+**[Website](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/) · [Paper](https://arxiv.org/abs/2605.16966) · [PDF](https://arxiv.org/pdf/2605.16966) · [Full Paper List](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-gallery)**
 
 <p align="center">
   <img src="docs/assets/survey-overview.png" alt="A unified framework for PDE-governed inverse problems, inverse design, and control" width="900">
 </p>
 
-The website provides a searchable archive of **168 studies**, including **45 papers with author-associated code**, together with [reported quantitative results](https://tanpig-x.github.io/Awesome-Inverse-PDE-problems/#view-results) and [method applicability](https://tanpig-x.github.io/Awesome-Inverse-PDE-problems/#view-applicability).
+The website provides a searchable archive of **168 studies**, including **45 papers with author-associated code**, together with [benchmarks and quantitative comparisons](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-results) and [method applicability](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-applicability).
 
 **Latest update · 11 October 2026:** Added 15 recent studies, five in each direction.
 
@@ -28,7 +28,7 @@ The tables below highlight representative studies and recent additions. Code lin
 
 ## Inverse Problems
 
-Recover unknown parameters, fields, or dynamics from observations. [Browse all papers →](https://tanpig-x.github.io/Awesome-Inverse-PDE-problems/#view-gallery?task=inverse_problems)
+Recover unknown parameters, fields, or dynamics from observations. [Browse all papers →](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-gallery?task=inverse_problems)
 
 | Year | Paper | Code |
 | --- | --- | --- |
@@ -45,7 +45,7 @@ Recover unknown parameters, fields, or dynamics from observations. [Browse all p
 
 ## Inverse Design
 
-Find geometries, materials, or physical configurations that achieve a target response. [Browse all papers →](https://tanpig-x.github.io/Awesome-Inverse-PDE-problems/#view-gallery?task=inverse_design)
+Find geometries, materials, or physical configurations that achieve a target response. [Browse all papers →](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-gallery?task=inverse_design)
 
 | Year | Paper | Code |
 | --- | --- | --- |
@@ -62,7 +62,7 @@ Find geometries, materials, or physical configurations that achieve a target res
 
 ## PDE Control
 
-Learn actions and policies that steer PDE-governed systems toward a desired state. [Browse all papers →](https://tanpig-x.github.io/Awesome-Inverse-PDE-problems/#view-gallery?task=control)
+Learn actions and policies that steer PDE-governed systems toward a desired state. [Browse all papers →](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-gallery?task=control)
 
 | Year | Paper | Code |
 | --- | --- | --- |
