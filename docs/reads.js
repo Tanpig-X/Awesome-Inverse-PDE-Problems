@@ -2,12 +2,12 @@
 (() => {
   'use strict';
   const productionOrigin = 'https://tanpig-x.github.io';
-  const productionPath = '/Awesome-Inverse-PDE-problems/';
+  const productionPath = '/Awesome-Inverse-PDE-Problems/';
   const namespace = 'tanpig-x.github.io';
   const key = 'awesome-inverse-pde-problems';
   const endpoint = `https://counterapi.com/api/${namespace}/view/${key}`;
   const onProduction = location.origin === productionOrigin &&
-    [productionPath, productionPath + 'index.html'].includes(location.pathname);
+    [productionPath, productionPath + 'index.html'].some(path => path.toLowerCase() === location.pathname.toLowerCase());
   const isLocal = ['localhost', '127.0.0.1', ''].includes(location.hostname);
   const render = (count, state) => {
     const label = count === null ? '—' : count.toLocaleString('en-US');
