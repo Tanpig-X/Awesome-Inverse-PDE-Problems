@@ -5,6 +5,165 @@
   "description": "Source-specific quantitative comparisons. Values are transcribed from primary papers and have not been independently reproduced. Best-value styling applies within a metric column only, with no cross-benchmark ranking.",
   "groups": [
     {
+      "id": "pidion_inverse",
+      "task": "inverse_problems",
+      "title": "PI-DION",
+      "subtitle": "Inverse operators with and without parameter labels",
+      "summary": "Source recovery and permeability estimation with 1,000 training samples per method.",
+      "source": {
+        "id": "pidion2025",
+        "title": "Physics-Informed Deep Inverse Operator Networks for Solving PDE Inverse Problems",
+        "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/cbe1fd3136e0f049bb8bc104231ccb99-Abstract-Conference.html",
+        "code_url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/cbe1fd3136e0f049bb8bc104231ccb99-Supplemental-Conference.zip",
+        "code_format": "supplementary_zip",
+        "version": "ICLR 2025",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "pidion_1000",
+          "label": "1,000 training samples",
+          "setting": "Reaction–diffusion, Darcy and Helmholtz inverse problems. Supervised methods use labeled parameter–solution pairs. Unsupervised PI-DION uses observed solutions without parameter labels.",
+          "location": "Table 1 · p. 10",
+          "source_url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/cbe1fd3136e0f049bb8bc104231ccb99-Paper-Conference.pdf#page=10",
+          "metrics": [
+            {
+              "key": "reaction_diffusion",
+              "label": "Reaction–diffusion",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Relative L2 error of the predicted unknown field"
+            },
+            {
+              "key": "darcy",
+              "label": "Darcy",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Relative L2 error of the predicted unknown field"
+            },
+            {
+              "key": "helmholtz",
+              "label": "Helmholtz",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Relative L2 error of the predicted unknown field"
+            }
+          ],
+          "rows": [
+            {
+              "method": "DeepONet, MLP/CNN branch (supervised)",
+              "values": {
+                "reaction_diffusion": {
+                  "value": "1.10",
+                  "std": null,
+                  "status": "reported"
+                },
+                "darcy": {
+                  "value": "8.77",
+                  "std": null,
+                  "status": "reported"
+                },
+                "helmholtz": {
+                  "value": "7.86",
+                  "std": null,
+                  "status": "reported"
+                }
+              }
+            },
+            {
+              "method": "DeepONet, FNO branch (supervised)",
+              "values": {
+                "reaction_diffusion": {
+                  "value": "21.10",
+                  "std": null,
+                  "status": "reported"
+                },
+                "darcy": {
+                  "value": "9.12",
+                  "std": null,
+                  "status": "reported"
+                },
+                "helmholtz": {
+                  "value": "11.30",
+                  "std": null,
+                  "status": "reported"
+                }
+              }
+            },
+            {
+              "method": "FNO (supervised)",
+              "values": {
+                "reaction_diffusion": {
+                  "value": null,
+                  "std": null,
+                  "status": "NA"
+                },
+                "darcy": {
+                  "value": "3.41",
+                  "std": null,
+                  "status": "reported"
+                },
+                "helmholtz": {
+                  "value": "25.85",
+                  "std": null,
+                  "status": "reported"
+                }
+              }
+            },
+            {
+              "method": "PI-DION (supervised)",
+              "values": {
+                "reaction_diffusion": {
+                  "value": "1.04",
+                  "std": null,
+                  "status": "reported"
+                },
+                "darcy": {
+                  "value": "3.45",
+                  "std": null,
+                  "status": "reported"
+                },
+                "helmholtz": {
+                  "value": "5.64",
+                  "std": null,
+                  "status": "reported"
+                }
+              }
+            },
+            {
+              "method": "PI-DION (unsupervised)",
+              "values": {
+                "reaction_diffusion": {
+                  "value": "1.03",
+                  "std": null,
+                  "status": "reported"
+                },
+                "darcy": {
+                  "value": "8.10",
+                  "std": null,
+                  "status": "reported"
+                },
+                "helmholtz": {
+                  "value": "8.05",
+                  "std": null,
+                  "status": "reported"
+                }
+              }
+            }
+          ],
+          "highlight": true,
+          "note": "Relative L₂ error in percent. Every row uses 1,000 training samples, but supervision differs. FNO reaction–diffusion is N/A in the source. Compute costs are not reported in this table.",
+          "details": {
+            "Reaction–diffusion source recovery": "1D spatial domain [0,1], time [0,1]. Recover f(x) in separable source f(x)g(t) from initial, final and boundary observations. FDM data on 30 × 30 grid.",
+            "Darcy permeability recovery": "Recover positive permeability from full pressure measurements on a 30 × 30 grid. Fixed forcing 100x(1−x)y(1−y). Gaussian random permeability field with min–max scaling.",
+            "Helmholtz source recovery": "Recover the source over [0,1]^2 from internal measurements on [0.2,0.8]^2. Fixed coefficients sigma=c=1 and homogeneous Neumann boundary data.",
+            "Evaluation": "Source-reported test errors. Reaction–diffusion explicitly uses 1000 test samples. No uncertainty intervals are reported in Table 1.",
+            "Code": "Official conference supplementary ZIP, approximately 99 MB. Contains supervised and unsupervised Jupyter source notebooks."
+          }
+        }
+      ]
+    },
+    {
       "id": "pdeinvbench_accuracy",
       "task": "inverse_problems",
       "title": "PDEInvBench",
@@ -1125,6 +1284,218 @@
             "Cost definition": "Per-instance optimization runtime from Table 14.",
             "Hardware": "Same reported server as PInv.",
             "Selection": "Retains the same method set as PInv to show task dependence, including unsuccessful high-error results."
+          }
+        }
+      ]
+    },
+    {
+      "id": "automs_design",
+      "task": "inverse_design",
+      "title": "AutoMS",
+      "subtitle": "Cross-physics microstructure design",
+      "summary": "Numerical, single-agent and multi-agent search compared on coupled physical targets.",
+      "source": {
+        "id": "automs2026",
+        "title": "AutoMS: Multi-Agent Evolutionary Search for Cross-Physics Inverse Microstructure Design",
+        "paper_url": "https://proceedings.mlr.press/v306/zhao26bh.html",
+        "code_url": "https://github.com/tuple1126/AutoMS",
+        "version": "ICML 2026",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "automs_17_tasks",
+          "label": "17-task design suite",
+          "setting": "Author-defined 17-task microstructure design suite spanning mechanical, thermal and electrical targets. All methods share the same generator and JAX-FEM simulation engine. Four independent runs. 64³-voxel simulation grid.",
+          "location": "Table 1 · p. 6",
+          "source_url": "https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhao26bh/zhao26bh.pdf#page=6",
+          "metrics": [
+            {
+              "key": "success_rate",
+              "label": "Success rate",
+              "unit": "%",
+              "direction": "higher",
+              "definition": "Run has at least one candidate satisfying every target within 10% relative error."
+            },
+            {
+              "key": "mean_relative_error",
+              "label": "Mean relative error",
+              "unit": "ratio",
+              "direction": "lower",
+              "definition": "Per-run best candidate mean absolute relative target error, averaged over runs."
+            },
+            {
+              "key": "iterations",
+              "label": "Iterations",
+              "unit": "iterations",
+              "direction": "lower",
+              "definition": "Mean optimization iterations used in the source evaluation."
+            },
+            {
+              "key": "runtime",
+              "label": "Execution time",
+              "unit": "s",
+              "direction": "lower",
+              "definition": "Total execution time excluding plasticity simulations."
+            }
+          ],
+          "rows": [
+            {
+              "method": "NSGA-II",
+              "values": {
+                "success_rate": {
+                  "value": "43.7",
+                  "std": null
+                },
+                "mean_relative_error": {
+                  "value": "0.4276",
+                  "std": null
+                },
+                "iterations": {
+                  "value": "48.8",
+                  "std": null
+                },
+                "runtime": {
+                  "value": "5550.2",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "ReAct",
+              "values": {
+                "success_rate": {
+                  "value": "53.3",
+                  "std": null
+                },
+                "mean_relative_error": {
+                  "value": "0.0345",
+                  "std": null
+                },
+                "iterations": {
+                  "value": "10.0",
+                  "std": null
+                },
+                "runtime": {
+                  "value": "2843.9",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "BayesOpt",
+              "values": {
+                "success_rate": {
+                  "value": "65.0",
+                  "std": null
+                },
+                "mean_relative_error": {
+                  "value": "0.0194",
+                  "std": null
+                },
+                "iterations": {
+                  "value": "39.2",
+                  "std": null
+                },
+                "runtime": {
+                  "value": "3982.9",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "CMA-ES",
+              "values": {
+                "success_rate": {
+                  "value": "66.7",
+                  "std": null
+                },
+                "mean_relative_error": {
+                  "value": "0.0241",
+                  "std": null
+                },
+                "iterations": {
+                  "value": "40.8",
+                  "std": null
+                },
+                "runtime": {
+                  "value": "4202.3",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "S-SAES",
+              "values": {
+                "success_rate": {
+                  "value": "69.2",
+                  "std": null
+                },
+                "mean_relative_error": {
+                  "value": "0.0172",
+                  "std": null
+                },
+                "iterations": {
+                  "value": "9.6",
+                  "std": null
+                },
+                "runtime": {
+                  "value": "1743.0",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "C-SAES",
+              "values": {
+                "success_rate": {
+                  "value": "74.1",
+                  "std": null
+                },
+                "mean_relative_error": {
+                  "value": "0.0227",
+                  "std": null
+                },
+                "iterations": {
+                  "value": "16.7",
+                  "std": null
+                },
+                "runtime": {
+                  "value": "2980.8",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "AutoMS",
+              "values": {
+                "success_rate": {
+                  "value": "83.8",
+                  "std": null
+                },
+                "mean_relative_error": {
+                  "value": "0.0140",
+                  "std": null
+                },
+                "iterations": {
+                  "value": "14.4",
+                  "std": null
+                },
+                "runtime": {
+                  "value": "2180.5",
+                  "std": null
+                }
+              }
+            }
+          ],
+          "highlight": true,
+          "note": "Means across four independent runs. Execution time excludes plasticity simulations. Compare success and error alongside runtime. Standard deviations are not provided in this table.",
+          "details": {
+            "Scope": "Author-defined benchmark suite. These results are not a cross-paper ranking. All methods share the generator and JAX-FEM engine.",
+            "Hardware": "2 × NVIDIA A40 (48 GB each), 64-core AMD EPYC 7763, 512 GB RAM. Python 3.10. DeepSeek-V3.2 default LLM backbone.",
+            "Success": "A run succeeds if at least one candidate meets every target within 10% relative error.",
+            "Time definition": "Total execution time excluding plasticity simulations.",
+            "Selected metrics": "Four of the original seven metrics are shown. Candidate-level CSR, best property match and composite quality score are omitted."
           }
         }
       ]
