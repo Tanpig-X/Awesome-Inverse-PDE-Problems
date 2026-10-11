@@ -1,0 +1,259 @@
+{
+  "type": "editorial_synthesis",
+  "snapshot": "2026-10-11",
+  "reference_scope": "supplementary bibliography",
+  "scope": "Selected workflows from the current manuscript, not an exhaustive classification or an empirical ranking.",
+  "columns": [
+    "PDE residual / solver in online loop",
+    "Online optimization / iterative sampling",
+    "Explicit multiple-candidate generation",
+    "Observation feedback during control deployment"
+  ],
+  "legend": {
+    "1": "Included in the depicted workflow",
+    "2": "Variant-dependent",
+    "0": "Not part of the depicted workflow, not an impossibility claim"
+  },
+  "rows": [
+    {
+      "name": "Direct inverse maps",
+      "examples": "NIO / tandem network",
+      "tasks": "IP, ID",
+      "data": "Paired examples",
+      "values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "keys": [
+        "molinaro2023neural",
+        "liu2018training"
+      ],
+      "sections": [
+        "3.1.1",
+        "4.2"
+      ],
+      "reason": "Selected deterministic maps reuse a trained predictor. Tandem training uses a forward surrogate, but deployment does not require a PDE solve. Probabilistic inverse maps are separate variants.",
+      "references": [
+        56,
+        44
+      ]
+    },
+    {
+      "name": "PDE-residual optimization",
+      "examples": "PINN / hPINN / Control PINN",
+      "tasks": "IP, ID, C",
+      "data": "Observations or targets\n+ governing equations",
+      "values": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "keys": [
+        "raissi2019physics",
+        "lu2021physics",
+        "barry2025physics"
+      ],
+      "sections": [
+        "3.1.2",
+        "4.1.1",
+        "5.1.1"
+      ],
+      "reason": "Instance-specific residual fitting uses measurements or design/control targets and the PDE. The depicted configuration does not require a labeled parameter/solution training set. Amortized solver-trained controllers are not represented by this row.",
+      "references": [
+        69,
+        50,
+        9
+      ]
+    },
+    {
+      "name": "Forward-surrogate optimization",
+      "examples": "Neural adjoint / learned-model search",
+      "tasks": "IP, ID, C",
+      "data": "PDE response pairs",
+      "values": [
+        0,
+        1,
+        0,
+        2
+      ],
+      "keys": [
+        "ren2020benchmarking",
+        "peurifoy2018nanophotonic",
+        "korda2018linear"
+      ],
+      "sections": [
+        "3.1.3",
+        "4.1.2",
+        "5.1.2"
+      ],
+      "reason": "Depicts a fixed data-trained surrogate queried by an optimizer. Physics-informed surrogate training and hybrid solver corrections are alternative setups. Feedback is present in MPC variants, including the cited Koopman control example. Neural adjoint also provides general inverse-problem background.",
+      "references": [
+        70,
+        66,
+        38
+      ]
+    },
+    {
+      "name": "Visual inverse dynamics",
+      "examples": "IFD",
+      "tasks": "IP",
+      "data": "Video observations\n+ simulator / renderer",
+      "values": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "keys": [
+        "liu2023inferring"
+      ],
+      "sections": [
+        "3.2"
+      ],
+      "reason": "IFD couples a differentiable Euler simulator and volume rendering in instance-specific video reconstruction. Temporal fitting is not feedback control.",
+      "references": [
+        45
+      ]
+    },
+    {
+      "name": "Generative posterior inference",
+      "examples": "DiffusionPDE",
+      "tasks": "IP",
+      "data": "Joint coefficient /\nsolution fields",
+      "values": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "keys": [
+        "huang2024diffusionpde"
+      ],
+      "sections": [
+        "3.3.1"
+      ],
+      "reason": "The selected diffusion workflow uses a pretrained joint field prior with observation and PDE-residual guidance. Iterative sampling can produce multiple candidates, without a blanket calibration guarantee.",
+      "references": [
+        33
+      ]
+    },
+    {
+      "name": "Generative inverse design",
+      "examples": "CinDM",
+      "tasks": "ID",
+      "data": "Design-flow\ntrajectories",
+      "values": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "keys": [
+        "wu2024compositional"
+      ],
+      "sections": [
+        "4.3.2"
+      ],
+      "reason": "CinDM composes learned joint energy models and performs iterative sampling for candidate designs. Independent CFD validation after generation is not counted as physics in the online generation loop.",
+      "references": [
+        94
+      ]
+    },
+    {
+      "name": "Operator-based feedback",
+      "examples": "Neural backstepping gains",
+      "tasks": "C",
+      "data": "PDE parameters /\ncontroller gains",
+      "values": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "keys": [
+        "bhan2023neural"
+      ],
+      "sections": [
+        "5.2.1"
+      ],
+      "reason": "Neural gain operators replace repeated kernel solves. The underlying feedback controller still uses the observed state. Integration and policy evaluation are not iterative online optimization.",
+      "references": [
+        13
+      ]
+    },
+    {
+      "name": "Imitation control",
+      "examples": "Behavioral cloning",
+      "tasks": "C",
+      "data": "Observation-action\ndemonstrations",
+      "values": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "keys": [
+        "wei2024diffphycon"
+      ],
+      "sections": [
+        "5.2.2",
+        "7.4"
+      ],
+      "reason": "Depicts observation-to-action behavioral cloning such as the Burgers PDE control baseline in DiffPhyCon Appendix H.4 (PDF page 37). Demonstrations need not be optimal. Data generation can itself be expensive. Sequence-level open-loop imitation is outside this row.",
+      "references": [
+        92
+      ]
+    },
+    {
+      "name": "Generative control",
+      "examples": "DiffPhyCon / CL-DiffPhyCon",
+      "tasks": "C",
+      "data": "State-control\ntrajectories",
+      "values": [
+        0,
+        1,
+        1,
+        2
+      ],
+      "keys": [
+        "wei2024diffphycon",
+        "wei2024cl"
+      ],
+      "sections": [
+        "5.2.3",
+        "5.4"
+      ],
+      "reason": "Generative control uses iterative trajectory sampling. Feedback requires a suitable variant, illustrated by CL-DiffPhyCon. Objective guidance is not itself a full PDE solve.",
+      "references": [
+        92,
+        91
+      ]
+    },
+    {
+      "name": "Reinforcement learning",
+      "examples": "Rabault et al.",
+      "tasks": "C",
+      "data": "Rewarded simulator\nor system interactions",
+      "values": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "keys": [
+        "rabault2019artificial"
+      ],
+      "sections": [
+        "5.3"
+      ],
+      "reason": "Depicts a trained observation-to-action policy. Simulator interactions occur during learning, and deployed policy evaluation does not require an online PDE solve. Model-based planning is a different setup.",
+      "references": [
+        68
+      ]
+    }
+  ],
+  "manuscript_sha256": "c1d54b02ed80cf600c2a14e325f4942b358d7746fad55f1d32bec0467c39b9bd"
+}

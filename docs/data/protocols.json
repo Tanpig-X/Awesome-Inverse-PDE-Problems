@@ -1,0 +1,98 @@
+{
+  "pinnacle_pinv": {
+    "task_class": "inverse_problems",
+    "source_id": "pinnacle2024",
+    "title": "PINNacle: Poisson coefficient recovery (PInv)",
+    "main": true,
+    "metrics": [
+      "Reported relative L2 error (lower is better)"
+    ],
+    "setting": "PInv on [0,1]^2. 2,500 solution observations on a 50 x 50 grid. Gaussian noise is written N(0,0.1) in the paper. Preserve that notation without inferring a standard-deviation convention.",
+    "evaluation": "Mean and standard deviation over three runs. 20,000 optimization epochs. The paper labels the error L2RE.",
+    "timing": "Table 14 gives the mean runtime for per-instance optimization. This is online solution cost, not reusable offline pretraining and not a single network forward pass.",
+    "hardware": "Section 4.1 reports a server with 20 Intel Xeon Silver 4210 CPUs and eight RTX 2080 Ti GPUs. Per-run GPU allocation is not specified. The paper describes 12 GB per GPU. This hardware description is retained as reported, not independently verified.",
+    "selection": "Vanilla PINN, boundary-weighted PINN, gradient-enhanced PINN, and the variational method labelled vPINN in the source."
+  },
+  "pinnacle_hinv": {
+    "task_class": "inverse_problems",
+    "source_id": "pinnacle2024",
+    "title": "PINNacle: diffusion coefficient recovery (HInv)",
+    "main": false,
+    "metrics": [
+      "Reported relative L2 error (lower is better)"
+    ],
+    "setting": "HInv on [-1,1]^2 x [0,1]. 2,500 random space-time observations. Gaussian noise written N(0,0.1).",
+    "evaluation": "Same four method labels as PInv. Mean and standard deviation over three runs with 20,000 optimization epochs.",
+    "timing": "Per-instance optimization runtime from Table 14.",
+    "hardware": "Same reported server as PInv.",
+    "selection": "Retains the same method set as PInv to show task dependence, including unsuccessful high-error results."
+  },
+  "cindm_one": {
+    "task_class": "inverse_design",
+    "source_id": "cindm2024",
+    "title": "CinDM: one-airfoil design",
+    "main": true,
+    "metrics": [
+      "Design objective -lift + drag (lower is better)",
+      "Lift-to-drag ratio (higher is better)"
+    ],
+    "setting": "One-airfoil design. Models trained on flow around a single shape at 64 x 64 resolution. Designs evaluated with Lily-Pad at 128 x 128 resolution.",
+    "evaluation": "Appendix D.1: 10 batches, 20 candidates per batch. Select the best design in each batch, then average across 10 batches. Table 3 gives means without uncertainty intervals.",
+    "timing": "No task-matched wall-clock training or design times identified in Table 3 and Appendix D.1. N-body training times in Appendix A must not be reused for airfoils.",
+    "hardware": "NR for task-matched wall-clock timings.",
+    "selection": "All five methods in Table 3. Both metrics are retained because their rankings differ."
+  },
+  "cindm_two": {
+    "task_class": "inverse_design",
+    "source_id": "cindm2024",
+    "title": "CinDM: two-airfoil design",
+    "main": false,
+    "metrics": [
+      "Design objective -lift + drag (lower is better)",
+      "Lift-to-drag ratio (higher is better)"
+    ],
+    "setting": "Compositional generalization to two airfoils after training on single-shape flows. Training 64 x 64, Lily-Pad evaluation 128 x 128.",
+    "evaluation": "Best of 20 per batch, averaged across 10 batches, as in one-airfoil design. Do not interpret as mean performance of all generated candidates.",
+    "timing": "Task-matched wall-clock costs NR.",
+    "hardware": "NR for task-matched wall-clock timings.",
+    "selection": "All five methods in Table 3."
+  },
+  "burgers_pofc": {
+    "task_class": "control",
+    "source_id": "diffphycon2024",
+    "title": "DiffPhyCon: 1D Burgers, partial observation and full control (PO-FC)",
+    "main": true,
+    "metrics": [
+      "Best reported terminal control error J_actual (lower is better)"
+    ],
+    "setting": "Only PO-FC entries from Table 1. Do not combine with FO-PC or PO-PC. Control error is evaluated with the ground-truth dynamics.",
+    "evaluation": "Table 1 reports best J_actual. The control-energy budget is not fixed across these reported minima. Physical actuation energy is not computational cost.",
+    "timing": "Appendix K.4 identifies PO-FC as the timed setting and reports average inference time over test samples. Performance and timing are matched by method and task. Exact checkpoints and guidance settings are not cross-indexed between Tables 1 and 23, so these are reported summaries, not a measured fixed-budget Pareto frontier.",
+    "hardware": "Online times: one Tesla V100 GPU and eight CPUs. Offline hardware varies by method and is stored per row.",
+    "selection": "BC, BPPO, DiffPhyCon-lite and DiffPhyCon in the main table. SL is included in the supplement. SAC timings are excluded because Table 23 does not identify which SAC variant in Table 1 was timed. DDIM has a separate timing-only record with no borrowed accuracy."
+  },
+  "pdeinv_ns_compute": {
+    "task_class": "inverse_problems",
+    "source_id": "pdeinvbench2026",
+    "title": "PDEInvBench: 2D unforced Navier-Stokes compute profile",
+    "main": false,
+    "metrics": [],
+    "setting": "Compute profiles in Table 4. Appendix C.1.2 reports batch size 32 and 200 training epochs.",
+    "evaluation": "No accuracy is attached to these cost rows. Table 4 does not cross-index an accuracy operating point.",
+    "timing": "Inference is reported in iterations per second per batch. Preserve it/s. It is not per-instance latency, and no serial latency is inferred by dividing by batch size.",
+    "hardware": "Appendix C.1.3 calls the device NVIDIA RTX A100. This nonstandard label is quoted as reported. Exact device identity and memory capacity are unresolved.",
+    "selection": "All three architectures in Table 4 for 2DNS."
+  },
+  "pdeinv_darcy_compute": {
+    "task_class": "inverse_problems",
+    "source_id": "pdeinvbench2026",
+    "title": "PDEInvBench: Darcy flow compute profile",
+    "main": false,
+    "metrics": [],
+    "setting": "2DDF rows in Table 4. General protocol: batch size 32, 200 epochs.",
+    "evaluation": "Cost-only records. No accuracy or split is inferred from other figures.",
+    "timing": "Training durations preserved in minutes. Inference throughput preserved in it/s per batch.",
+    "hardware": "Source reports NVIDIA RTX A100, with unresolved device naming.",
+    "selection": "All three architectures in Table 4 for 2DDF."
+  }
+}

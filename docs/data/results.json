@@ -1,0 +1,1242 @@
+{
+  "schema_version": "1.0",
+  "snapshot_date": "2026-10-11",
+  "records": [
+    {
+      "record_id": "pinnacle_pinv__pinn",
+      "protocol_id": "pinnacle_pinv",
+      "method": "PINN",
+      "source_id": "pinnacle2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "9.42e-2",
+        "unit": "dimensionless",
+        "std": "1.58e-3",
+        "status": "reported",
+        "source_location": "Table 7"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NA",
+        "source_location": "No reusable pretraining",
+        "hardware": "NA"
+      },
+      "online_cost": {
+        "value": "453",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 14",
+        "hardware": "RTX 2080 Ti server, per-run allocation NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "pinnacle_pinv__pinn_w",
+      "protocol_id": "pinnacle_pinv",
+      "method": "PINN-w",
+      "source_id": "pinnacle2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "1.66e-1",
+        "unit": "dimensionless",
+        "std": "5.45e-3",
+        "status": "reported",
+        "source_location": "Table 7"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NA",
+        "source_location": "No reusable pretraining",
+        "hardware": "NA"
+      },
+      "online_cost": {
+        "value": "488",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 14",
+        "hardware": "RTX 2080 Ti server, per-run allocation NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "pinnacle_pinv__gpinn",
+      "protocol_id": "pinnacle_pinv",
+      "method": "gPINN",
+      "source_id": "pinnacle2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "8.03e-2",
+        "unit": "dimensionless",
+        "std": "2.79e-3",
+        "status": "reported",
+        "source_location": "Table 7"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NA",
+        "source_location": "No reusable pretraining",
+        "hardware": "NA"
+      },
+      "online_cost": {
+        "value": "1500",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 14",
+        "hardware": "RTX 2080 Ti server, per-run allocation NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "pinnacle_pinv__vpinn",
+      "protocol_id": "pinnacle_pinv",
+      "method": "vPINN",
+      "source_id": "pinnacle2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "2.45e-2",
+        "unit": "dimensionless",
+        "std": "1.03e-2",
+        "status": "reported",
+        "source_location": "Table 7"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NA",
+        "source_location": "No reusable pretraining",
+        "hardware": "NA"
+      },
+      "online_cost": {
+        "value": "490",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 14",
+        "hardware": "RTX 2080 Ti server, per-run allocation NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "pinnacle_hinv__pinn",
+      "protocol_id": "pinnacle_hinv",
+      "method": "PINN",
+      "source_id": "pinnacle2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "1.57",
+        "unit": "dimensionless",
+        "std": "7.21e-2",
+        "status": "reported",
+        "source_location": "Table 7"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NA",
+        "source_location": "No reusable pretraining",
+        "hardware": "NA"
+      },
+      "online_cost": {
+        "value": "1090",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 14",
+        "hardware": "RTX 2080 Ti server, per-run allocation NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "pinnacle_hinv__pinn_w",
+      "protocol_id": "pinnacle_hinv",
+      "method": "PINN-w",
+      "source_id": "pinnacle2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "5.26e-2",
+        "unit": "dimensionless",
+        "std": "3.31e-3",
+        "status": "reported",
+        "source_location": "Table 7"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NA",
+        "source_location": "No reusable pretraining",
+        "hardware": "NA"
+      },
+      "online_cost": {
+        "value": "1120",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 14",
+        "hardware": "RTX 2080 Ti server, per-run allocation NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "pinnacle_hinv__gpinn",
+      "protocol_id": "pinnacle_hinv",
+      "method": "gPINN",
+      "source_id": "pinnacle2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "4.84",
+        "unit": "dimensionless",
+        "std": "2.07",
+        "status": "reported",
+        "source_location": "Table 7"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NA",
+        "source_location": "No reusable pretraining",
+        "hardware": "NA"
+      },
+      "online_cost": {
+        "value": "1560",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 14",
+        "hardware": "RTX 2080 Ti server, per-run allocation NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "pinnacle_hinv__vpinn",
+      "protocol_id": "pinnacle_hinv",
+      "method": "vPINN",
+      "source_id": "pinnacle2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "4.56e-1",
+        "unit": "dimensionless",
+        "std": "1.30e-2",
+        "status": "reported",
+        "source_location": "Table 7"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NA",
+        "source_location": "No reusable pretraining",
+        "hardware": "NA"
+      },
+      "online_cost": {
+        "value": "1860",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 14",
+        "hardware": "RTX 2080 Ti server, per-run allocation NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_one__cem_fno",
+      "protocol_id": "cindm_one",
+      "method": "CEM + FNO",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "0.0932",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "1.4005",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_one__cem_le_pde",
+      "protocol_id": "cindm_one",
+      "method": "CEM + LE-PDE",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "0.0794",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "1.4340",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_one__backprop_fno",
+      "protocol_id": "cindm_one",
+      "method": "Backprop + FNO",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "0.0281",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "1.3300",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_one__backprop_le_pde",
+      "protocol_id": "cindm_one",
+      "method": "Backprop + LE-PDE",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "0.1072",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "1.3203",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_one__cindm",
+      "protocol_id": "cindm_one",
+      "method": "CinDM",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "0.0797",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "2.1770",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_two__cem_fno",
+      "protocol_id": "cindm_two",
+      "method": "CEM + FNO",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "0.3890",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "1.0914",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_two__cem_le_pde",
+      "protocol_id": "cindm_two",
+      "method": "CEM + LE-PDE",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "0.1691",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "1.0568",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_two__backprop_fno",
+      "protocol_id": "cindm_two",
+      "method": "Backprop + FNO",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "0.1837",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "0.9722",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_two__backprop_le_pde",
+      "protocol_id": "cindm_two",
+      "method": "Backprop + LE-PDE",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "0.0891",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "0.9866",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cindm_two__cindm",
+      "protocol_id": "cindm_two",
+      "method": "CinDM",
+      "source_id": "cindm2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "0.1986",
+        "unit": "source_objective_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "metric_2": {
+        "value": "1.4216",
+        "unit": "dimensionless",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 3"
+      },
+      "offline_cost": {
+        "value": null,
+        "unit": "h",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "online_cost": {
+        "value": null,
+        "unit": "s",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 3 and Appendix D.1",
+        "hardware": "NR"
+      },
+      "memory_gb": null,
+      "notes": ""
+    },
+    {
+      "record_id": "burgers_pofc__bc",
+      "protocol_id": "burgers_pofc",
+      "method": "BC",
+      "source_id": "diffphycon2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "0.02836",
+        "unit": "source_control_error_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 1, PO-FC"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "8.8",
+        "unit": "h",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 V100-32G GPU, 12 CPUs"
+      },
+      "online_cost": {
+        "value": "1.22",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 Tesla V100 GPU, 8 CPUs"
+      },
+      "memory_gb": null,
+      "notes": "Tables 1 and 23 are linked at the method/task level only."
+    },
+    {
+      "record_id": "burgers_pofc__bppo",
+      "protocol_id": "burgers_pofc",
+      "method": "BPPO",
+      "source_id": "diffphycon2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "0.02771",
+        "unit": "source_control_error_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 1, PO-FC"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "8.9",
+        "unit": "h",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 V100-32G GPU, 12 CPUs"
+      },
+      "online_cost": {
+        "value": "0.82",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 Tesla V100 GPU, 8 CPUs"
+      },
+      "memory_gb": null,
+      "notes": "Tables 1 and 23 are linked at the method/task level only."
+    },
+    {
+      "record_id": "burgers_pofc__diffphycon_lite",
+      "protocol_id": "burgers_pofc",
+      "method": "DiffPhyCon-lite",
+      "source_id": "diffphycon2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "0.01139",
+        "unit": "source_control_error_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 1, PO-FC"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "1.7",
+        "unit": "h",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 A100-80G GPU, 8 CPUs"
+      },
+      "online_cost": {
+        "value": "21.13",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 Tesla V100 GPU, 8 CPUs"
+      },
+      "memory_gb": null,
+      "notes": "Tables 1 and 23 are linked at the method/task level only."
+    },
+    {
+      "record_id": "burgers_pofc__diffphycon",
+      "protocol_id": "burgers_pofc",
+      "method": "DiffPhyCon",
+      "source_id": "diffphycon2024",
+      "evidence_type": "literature_reported",
+      "main_table": true,
+      "metric_1": {
+        "value": "0.01103",
+        "unit": "source_control_error_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 1, PO-FC"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "4.4",
+        "unit": "h",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 A100-80G GPU, 8 CPUs"
+      },
+      "online_cost": {
+        "value": "58.97",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 Tesla V100 GPU, 8 CPUs"
+      },
+      "memory_gb": null,
+      "notes": "Tables 1 and 23 are linked at the method/task level only."
+    },
+    {
+      "record_id": "burgers_pofc__sl",
+      "protocol_id": "burgers_pofc",
+      "method": "SL",
+      "source_id": "diffphycon2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": "0.09752",
+        "unit": "source_control_error_units",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 1, PO-FC"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "2.6",
+        "unit": "h",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 V100-32G GPU, 12 CPUs"
+      },
+      "online_cost": {
+        "value": "74.85",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 Tesla V100 GPU, 8 CPUs"
+      },
+      "memory_gb": null,
+      "notes": "Tables 1 and 23 are linked at the method/task level only."
+    },
+    {
+      "record_id": "burgers_pofc__diffphycon_ddim_8_steps",
+      "protocol_id": "burgers_pofc",
+      "method": "DiffPhyCon-DDIM (8 steps)",
+      "source_id": "diffphycon2024",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": null,
+        "unit": "source_control_error_units",
+        "std": null,
+        "status": "NR",
+        "source_location": "No matched performance in Tables 1 and 23"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "1.7",
+        "unit": "h",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 A100-80G GPU, 8 CPUs"
+      },
+      "online_cost": {
+        "value": "0.53",
+        "unit": "s",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 23",
+        "hardware": "1 Tesla V100 GPU, 8 CPUs"
+      },
+      "memory_gb": null,
+      "notes": "Timing-only record. Do not attach the accuracy of the default sampler."
+    },
+    {
+      "record_id": "pdeinv_ns_compute__fno",
+      "protocol_id": "pdeinv_ns_compute",
+      "method": "FNO",
+      "source_id": "pdeinvbench2026",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 4 is cost-only"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "1",
+        "unit": "h",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "online_cost": {
+        "value": "33.64",
+        "unit": "it/s per batch",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "memory_gb": {
+        "value": "4.7",
+        "unit": "GB",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4"
+      },
+      "notes": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+    },
+    {
+      "record_id": "pdeinv_ns_compute__scot",
+      "protocol_id": "pdeinv_ns_compute",
+      "method": "scOT",
+      "source_id": "pdeinvbench2026",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 4 is cost-only"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "2.5",
+        "unit": "h",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "online_cost": {
+        "value": "11.15",
+        "unit": "it/s per batch",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "memory_gb": {
+        "value": "4.2",
+        "unit": "GB",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4"
+      },
+      "notes": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+    },
+    {
+      "record_id": "pdeinv_ns_compute__resnet",
+      "protocol_id": "pdeinv_ns_compute",
+      "method": "ResNet",
+      "source_id": "pdeinvbench2026",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 4 is cost-only"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "1.5",
+        "unit": "h",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "online_cost": {
+        "value": "22.07",
+        "unit": "it/s per batch",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "memory_gb": {
+        "value": "3.8",
+        "unit": "GB",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4"
+      },
+      "notes": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+    },
+    {
+      "record_id": "pdeinv_darcy_compute__fno",
+      "protocol_id": "pdeinv_darcy_compute",
+      "method": "FNO",
+      "source_id": "pdeinvbench2026",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 4 is cost-only"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "18",
+        "unit": "min",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "online_cost": {
+        "value": "9.5",
+        "unit": "it/s per batch",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "memory_gb": {
+        "value": "7.5",
+        "unit": "GB",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4"
+      },
+      "notes": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+    },
+    {
+      "record_id": "pdeinv_darcy_compute__scot",
+      "protocol_id": "pdeinv_darcy_compute",
+      "method": "scOT",
+      "source_id": "pdeinvbench2026",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 4 is cost-only"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "29",
+        "unit": "min",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "online_cost": {
+        "value": "3.45",
+        "unit": "it/s per batch",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "memory_gb": {
+        "value": "4.5",
+        "unit": "GB",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4"
+      },
+      "notes": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+    },
+    {
+      "record_id": "pdeinv_darcy_compute__resnet",
+      "protocol_id": "pdeinv_darcy_compute",
+      "method": "ResNet",
+      "source_id": "pdeinvbench2026",
+      "evidence_type": "literature_reported",
+      "main_table": false,
+      "metric_1": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NR",
+        "source_location": "Table 4 is cost-only"
+      },
+      "metric_2": {
+        "value": null,
+        "unit": "dimensionless",
+        "std": null,
+        "status": "NA",
+        "source_location": "Not applicable"
+      },
+      "offline_cost": {
+        "value": "60",
+        "unit": "min",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "online_cost": {
+        "value": "1.1",
+        "unit": "it/s per batch",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4",
+        "hardware": "Source label: NVIDIA RTX A100"
+      },
+      "memory_gb": {
+        "value": "8",
+        "unit": "GB",
+        "std": null,
+        "status": "reported",
+        "source_location": "Table 4"
+      },
+      "notes": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+    }
+  ]
+}

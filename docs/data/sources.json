@@ -1,0 +1,52 @@
+{
+  "pinnacle2024": {
+    "title": "PINNacle: A Comprehensive Benchmark of Physics-Informed Neural Networks for Solving PDEs",
+    "citation_key": "hao2024pinnacle",
+    "version": "NeurIPS 2024 proceedings, 54-page PDF",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/8c63299fb2820ef41cb05e2ff11836f5-Paper-Datasets_and_Benchmarks_Track.pdf",
+    "locations": {
+      "performance": "Table 7, PDF page 33",
+      "cost": "Table 14, PDF page 40",
+      "protocol": "Sections 4.1 and B.1 (PInv/HInv)"
+    },
+    "accessed": "2026-10-11",
+    "sha256": "775dd915e9df5d60890c005dd33eb0d334a2a404591d86282463d9f166c0d82a"
+  },
+  "cindm2024": {
+    "title": "Compositional Generative Inverse Design",
+    "citation_key": "wu2024compositional",
+    "version": "arXiv:2401.13171v2, 11 March 2024",
+    "url": "https://arxiv.org/pdf/2401.13171v2",
+    "locations": {
+      "performance": "Table 3, PDF page 9",
+      "protocol": "Appendix D.1"
+    },
+    "accessed": "2026-10-11",
+    "sha256": "752b308f60dcba5b406ae2cb3304e0064e6bb3a041f0b9d0b26a9274067e03b5"
+  },
+  "diffphycon2024": {
+    "title": "A Generative Approach to Control Complex Physical Systems",
+    "citation_key": "wei2024diffphycon",
+    "version": "arXiv:2407.06494v3, 2 October 2024",
+    "url": "https://arxiv.org/pdf/2407.06494v3",
+    "locations": {
+      "performance": "Table 1, PDF page 7",
+      "cost": "Table 23, PDF page 45",
+      "protocol": "Appendices D.2 and K.4"
+    },
+    "accessed": "2026-10-11",
+    "sha256": "730f14cccbcb004fd77e6d3be39e6c34d9a5fe6bf89da9049c383eb4e1496610"
+  },
+  "pdeinvbench2026": {
+    "title": "PDEInvBench: A Comprehensive Dataset and Design Space Exploration of Neural Networks for PDE Inverse Problems",
+    "citation_key": "goel2026pdeinvbench",
+    "version": "arXiv:2605.25353v1, 25 May 2026",
+    "url": "https://arxiv.org/pdf/2605.25353v1",
+    "locations": {
+      "cost": "Table 4, PDF page 25, Appendix C.1.3",
+      "protocol": "Appendix C.1.2"
+    },
+    "accessed": "2026-10-11",
+    "sha256": "ee02206aaf714075e1b8a13f392ff06892014068ccc791369abbe34a166a9765"
+  }
+}
