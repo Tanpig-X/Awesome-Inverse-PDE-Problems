@@ -12,9 +12,9 @@ Zhentao Tan, Yuze Hao, Boyi Zou, Mingsheng Long, Yi Yang, and Gang Bao.
   <img src="docs/assets/survey-overview.png" alt="A unified framework for PDE-governed inverse problems, inverse design, and control" width="900">
 </p>
 
-The website provides a searchable archive of **168 studies**, including **45 papers with author-associated code**, together with [benchmarks and quantitative comparisons](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-results) and [method applicability](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-applicability).
+The website provides a searchable archive of **190 studies**, including **59 papers with author-associated code**, together with [benchmarks and quantitative comparisons](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-results) and [method applicability](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-applicability).
 
-**Latest update · 11 October 2026:** Added 15 recent studies, five in each direction.
+**Latest update · 11 October 2026:** Added 22 papers published in 2025–2026 across the three directions, verified publication metadata for seven existing entries, and added PI-DION and AutoMS benchmark comparisons.
 
 ## Contents
 
@@ -24,60 +24,58 @@ The website provides a searchable archive of **168 studies**, including **45 pap
 - [Contributing](#contributing)
 - [Citation](#citation)
 
-The tables below highlight representative studies and recent additions. Code links point to author-associated repositories. A dash means that a code repository has not yet been verified in this collection.
+The tables below highlight recently verified publications from 2025–2026. [Browse the published-paper collection →](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-gallery?collection=published&sort=newest) Code links point to author-associated repositories or official archives. A dash means that no public implementation has been verified in this collection.
 
 ## Inverse Problems
 
 Recover unknown parameters, fields, or dynamics from observations. [Browse all papers →](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-gallery?task=inverse_problems)
 
-| Year | Paper | Code |
-| --- | --- | --- |
-| 2026 | [Backward-Consistent Diffusion Sampling for Sparsely Observed PDE Inverse Problems](https://arxiv.org/abs/2610.04624) | [Code](https://github.com/bamb00zled82/FunBCS) |
-| 2026 | [BiLO: Bilevel Local Operator Learning for PDE Inverse Problems](https://doi.org/10.1016/j.jcp.2026.114679) | [Code](https://github.com/Rayzhangzirui/BILO) |
-| 2026 | [DiLO: Decoupling Generative Priors and Neural Operators via Diffusion Latent Optimization for Inverse Problems](https://arxiv.org/abs/2604.11375) | [Code](https://github.com/haibo-research/DiLO) |
-| 2026 | [Latent Diffusion Posterior Sampling with Surrogate Likelihood Guidance for PDE Inverse Problems](https://arxiv.org/abs/2606.26592) | — |
-| 2026 | [Learning Informative Prior with Infinite-Dimensional Continuous Normalizing Flow for Bayesian Inverse Problem](https://arxiv.org/abs/2609.03343) | — |
-| 2025 | [Bayesian BiLO: Bilevel Local Operator Learning for Efficient Uncertainty Quantification of Bayesian PDE Inverse Problems with Low-Rank Adaptation](https://arxiv.org/abs/2507.17019) | [Code](https://github.com/Rayzhangzirui/BILO) |
-| 2024 | [DiffusionPDE: Generative PDE-solving under partial observation](https://papers.nips.cc/paper_files/paper/2024/hash/eb3878c1dcbfff9ee95d5d033e5f5942-Abstract-Conference.html) | [Code](https://github.com/jhhuangchloe/DiffusionPDE) |
-| 2023 | [Neural Inverse Operators for Solving PDE Inverse Problems](https://proceedings.mlr.press/v202/molinaro23a.html) | — |
-| 2019 | [Analyzing Inverse Problems with Invertible Neural Networks](https://openreview.net/forum?id=rJed6j0cKX) | — |
-| 2019 | [Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations](https://www.sciencedirect.com/science/article/pii/S0021999118307125) | [Code](https://github.com/maziarraissi/PINNs) |
+| Year | Venue | Paper | Code |
+| --- | --- | --- | --- |
+| 2026 | UAI | [Adaptive Fourier Decomposition-guided Neural Operator Design for Inverse PDE Problems](https://proceedings.mlr.press/v337/song26a.html) | — |
+| 2026 | Nature Communications | [Going with the flow to solve for symmetry-driven PDE dynamics with physics-informed neural networks](https://www.nature.com/articles/s41467-026-75936-3) | [Code](https://github.com/mihaliskavousanakis/PINNs-for-DAEs) |
+| 2026 | ICLR | [Physics-Constrained Fine-Tuning of Flow-Matching Models for Generation and Inverse Problems](https://proceedings.iclr.cc/paper_files/paper/2026/hash/e8b782d03c623e3e587fdbcc521dd581-Abstract-Conference.html) | [Code](https://github.com/jantauberschmidt/PCFT) |
+| 2025 | NeurIPS | [Solving and Learning Partial Differential Equations with Variational Q-Exponential Processes](https://proceedings.neurips.cc/paper_files/paper/2025/hash/fe4f40a6eba58a1800cb694d89206e1f-Abstract-Conference.html) | [Code](https://github.com/lanzithinking/Diff_QEP) |
+| 2025 | NeurIPS | [Guided Diffusion Sampling on Function Spaces with Applications to PDEs](https://proceedings.neurips.cc/paper_files/paper/2025/hash/b8a28baaa25cebfa9345a8a2edf7f19d-Abstract-Conference.html) | [Code](https://github.com/neuraloperator/FunDPS) |
+| 2025 | npj Computational Materials | [Physics-informed neural operators for generalizable and label-free inference of temperature-dependent thermoelectric properties](https://www.nature.com/articles/s41524-025-01769-1) | — |
+| 2025 | ICLR | [Physics-Informed Deep Inverse Operator Networks for Solving PDE Inverse Problems](https://proceedings.iclr.cc/paper_files/paper/2025/hash/cbe1fd3136e0f049bb8bc104231ccb99-Abstract-Conference.html) | [Code ZIP](https://proceedings.iclr.cc/paper_files/paper/2025/file/cbe1fd3136e0f049bb8bc104231ccb99-Supplemental-Conference.zip) |
 
 ## Inverse Design
 
 Find geometries, materials, or physical configurations that achieve a target response. [Browse all papers →](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-gallery?task=inverse_design)
 
-| Year | Paper | Code |
-| --- | --- | --- |
-| 2026 | [Algebraic Language Models for Inverse Design of Metamaterials via Diffusion Transformers](https://doi.org/10.1038/s42256-026-01218-8) | [Code](https://github.com/li-zhengz/DiffusionMetamaterials) |
-| 2026 | [Deep learning assisted inverse design of nonreciprocal multilayer photonic structures](https://arxiv.org/abs/2603.10672) | — |
-| 2026 | [Neural network inverse design of nanophotonic scintillators](https://arxiv.org/abs/2606.16309) | — |
-| 2026 | [Neural Operator-enabled Topology-informed Evolutionary Strategy for PDE-Constrained Optimization](https://arxiv.org/abs/2607.07682) | [Code](https://github.com/xmh3698/notes-pde-opt) |
-| 2026 | [Physics Guided Conditional Diffusion Framework for Generative Inverse Design of Manufacturable Metasurface based Absorbers](https://arxiv.org/abs/2605.19611) | — |
-| 2024 | [Compositional Generative Inverse Design](https://arxiv.org/abs/2401.13171) | [Code](https://github.com/AI4Science-WestlakeU/cindm) |
-| 2023 | [Diffusion models beat GANs on topology optimization](https://arxiv.org/abs/2208.09591) | [Code](https://github.com/francoismaze/topodiff) |
-| 2021 | [Physics-informed neural networks with hard constraints for inverse design](https://arxiv.org/abs/2102.04626) | [Code](https://github.com/lululxvi/hpinn) |
-| 2020 | [Simulator-based training of generative neural networks for the inverse design of metasurfaces](https://arxiv.org/abs/1906.07843) | [Code](https://github.com/jonfanlab/GLOnet) |
-| 2018 | [Training deep neural networks for the inverse design of nanophotonic structures](https://arxiv.org/abs/1710.04724) | — |
+| Year | Venue | Paper | Code |
+| --- | --- | --- | --- |
+| 2026 | ICML | [Generative Inverse Design with Abstention via Diagonal Flow Matching](https://proceedings.mlr.press/v306/de-campos26a.html) | [Code](https://github.com/migueldecampos/diagcfm) |
+| 2026 | ICML | [AutoMS: Multi-Agent Evolutionary Search for Cross-Physics Inverse Microstructure Design](https://proceedings.mlr.press/v306/zhao26bh.html) | [Code](https://github.com/tuple1126/AutoMS) |
+| 2026 | Nature Machine Intelligence | [Algebraic language models for inverse design of metamaterials via diffusion transformers](https://doi.org/10.1038/s42256-026-01218-8) | [Code](https://github.com/li-zhengz/DiffusionMetamaterials) |
+| 2026 | Nature Communications | [Data-driven inverse design of multifunctional bicontinuous multiscale structures](https://www.nature.com/articles/s41467-025-68089-2) | [Code](https://github.com/llwang91/L-BOM) |
+| 2026 | Nature Machine Intelligence | [Current-diffusion model for metasurface structure discoveries with spatial-frequency dynamics](https://www.nature.com/articles/s42256-025-01162-z) | [Code](https://github.com/ISEE213/Current-Diffusion-Model) |
+| 2026 | npj Computational Materials | [Toward a robust and generalizable metamaterial foundation model](https://www.nature.com/articles/s41524-025-01925-7) | — |
+| 2025 | NeurIPS | [Training-Free Constrained Generation With Stable Diffusion Models](https://proceedings.neurips.cc/paper_files/paper/2025/hash/2774a3b52d436b5930da660dd2b32b3a-Abstract-Conference.html) | [Code](https://github.com/RAISELab-atUVA/Constrained-Stable-Diffusion) |
+| 2025 | NeurIPS Datasets and Benchmarks | [EngiBench: A Framework for Data-Driven Engineering Design Research](https://proceedings.neurips.cc/paper_files/paper/2025/hash/0013efa1327c079e73154d4061c3a396-Abstract-Datasets_and_Benchmarks_Track.html) | [Code](https://github.com/IDEALLab/EngiBench) |
+| 2025 | NeurIPS | [3DID: Direct 3D Inverse Design for Aerodynamics with Physics-Aware Optimization](https://proceedings.neurips.cc/paper_files/paper/2025/hash/8fffba1c70615c74f68f56290464590e-Abstract-Conference.html) | — |
+| 2025 | ICML | [Accelerating PDE-Constrained Optimization by the Derivative of Neural Operators](https://proceedings.mlr.press/v267/cheng25f.html) | [Code](https://github.com/zecheng-ai/Opt_RNO) |
+| 2025 | Nature | [Ultrabroadband and band-selective thermal meta-emitters by machine learning](https://www.nature.com/articles/s41586-025-09102-y) | [Code](https://zenodo.org/records/15229359) |
 
 ## PDE Control
 
 Learn actions and policies that steer PDE-governed systems toward a desired state. [Browse all papers →](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-gallery?task=control)
 
-| Year | Paper | Code |
-| --- | --- | --- |
-| 2026 | [CINOC: Cardinality-Invariant Neural Operator Policies for Scalable PDE Control](https://arxiv.org/abs/2605.25867) | [Code](https://github.com/SOLARIS-JHU/CINOC) |
-| 2026 | [Deep Hilbert–Galerkin Methods for Infinite-Dimensional PDEs and Optimal Control](https://arxiv.org/abs/2603.19463) | [Code](https://github.com/JacksonHebner/Deep-Hilbert-Galerkin-Methods) |
-| 2026 | [FNO∠θ: Extended Fourier neural operator for learning state and optimal control of distributed parameter systems](https://arxiv.org/abs/2604.05187) | [Code](https://github.com/zhexianli-usc/Optimal-control)¹ |
-| 2026 | [NeuronCtrl: Geometry-Aware Safe Closed-Loop Generative Control for Neuronal Microenvironment Dynamics](https://proceedings.mlr.press/v306/xu26d.html) | [Code](https://github.com/HowieHsu0126/NeuronControl) |
-| 2026 | [Physics-informed neural networks for PDE-constrained optimization and control](https://doi.org/10.1007/s42967-025-00499-x) | [Code](https://github.com/ComputationalScienceLaboratory/control-pinns) |
-| 2026 | [PINNs in PDE Constrained Optimal Control Problems: Direct vs Indirect Methods](https://arxiv.org/abs/2604.04920) | — |
-| 2025 | [From Uncertain to Safe: Conformal Adaptation of Diffusion Models for Safe PDE Control](https://proceedings.mlr.press/v267/hu25t.html) | [Code](https://github.com/AI4Science-WestlakeU/safediffcon) |
-| 2024 | [DiffPhyCon: a generative approach to control complex physical systems](https://arxiv.org/abs/2407.06494) | [Code](https://github.com/AI4Science-WestlakeU/diffphycon) |
-| 2024 | [Neural operators for bypassing gain and control computations in PDE backstepping](https://doi.org/10.1109/TAC.2023.3347499) | [Code](https://github.com/lukebhan/NeuralOperatorsForGainKernels) |
-| 2020 | [Learning to Control PDEs with Differentiable Physics](https://vladlen.info/papers/PDE-control.pdf) | [Code](https://github.com/p-holl/PDE-Control) |
+| Year | Venue | Paper | Code |
+| --- | --- | --- | --- |
+| 2026 | Journal of Fluid Mechanics | [Combining reinforcement learning and computational fluid dynamics for optimal kinematics of a robotic vertical-axis wind turbine](https://doi.org/10.1017/jfm.2026.11811) | — |
+| 2026 | ICML | [NeuronCtrl: Geometry-Aware Safe Closed-Loop Generative Control for Neuronal Microenvironment Dynamics](https://proceedings.mlr.press/v306/xu26d.html) | [Code](https://github.com/HowieHsu0126/NeuronControl) |
+| 2026 | Journal of Fluid Mechanics | [Experimental deep reinforcement learning control of a turbulent boundary layer with plasma actuators for skin-friction drag reduction](https://doi.org/10.1017/jfm.2025.11086) | — |
+| 2025 | Automatica | [Neural operators for adaptive control of freeway traffic](https://doi.org/10.1016/j.automatica.2025.112553) | — |
+| 2025 | ICML | [PDE-Controller: LLMs for Autoformalization and Reasoning of PDEs](https://proceedings.mlr.press/v267/soroco25a.html) | [Code](https://github.com/delta-lab-ai/pde-controller) |
+| 2025 | ICML | [From Uncertain to Safe: Conformal Adaptation of Diffusion Models for Safe PDE Control](https://proceedings.mlr.press/v267/hu25t.html) | [Code](https://github.com/AI4Science-WestlakeU/safediffcon) |
+| 2025 | Automatica | [Adaptive neural-operator backstepping control of a benchmark hyperbolic PDE](https://doi.org/10.1016/j.automatica.2025.112329) | [Code](https://github.com/lukebhan/NeuralOperatorAdaptiveControl) |
+| 2025 | Journal of Fluid Mechanics | [Reinforcement-learning-assisted control of four-roll mills: geometric symmetry and inertial effect](https://doi.org/10.1017/jfm.2025.10212) | — |
+| 2025 | ICLR | [Wavelet Diffusion Neural Operator](https://proceedings.iclr.cc/paper_files/paper/2025/hash/20eadb6338a53114a6371f102c5ded95-Abstract-Conference.html) | [Code](https://github.com/AI4Science-WestlakeU/wdno) |
+| 2025 | ICLR | [CL-diffphycon: closed-loop diffusion control of complex physical systems](https://openreview.net/forum?id=PiHGrTTnvb) | [Code](https://github.com/AI4Science-WestlakeU/CL_DiffPhyCon) |
+| 2025 | Journal of Fluid Mechanics | [Reinforcement-learning-based control of turbulent channel flows at high Reynolds numbers](https://doi.org/10.1017/jfm.2025.27) | — |
 
-¹ The Extended FNO repository currently provides the Burgers boundary-condition module.
 
 ## Contributing
 
