@@ -2,6 +2,16 @@
 
 ## 2026-10-11
 
+### Publication metadata follow-up
+
+- Refreshed 47 existing records across inverse problems, inverse design, and PDE control.
+- Added 33 verified publications to the 2025–2026 collection, bringing it to 62 papers.
+- Added 15 author-associated code links, bringing the archive total to 74.
+- Kept preprints and workshop papers explicitly labeled and outside the journal/conference collection.
+- Updated the README publication tables and retained the existing benchmark data.
+
+### Earlier archive expansion
+
 - Expanded the archive from 153 to 168 studies, adding five works in each of inverse problems, inverse design, and PDE control.
 - Added 45 verified author-associated code links to existing and new studies. Retained verification dates and primary-source provenance in the method index.
 - Added Code and Collection filters, a recent-addition sorting option, and code links in cards and detail dialogs.
