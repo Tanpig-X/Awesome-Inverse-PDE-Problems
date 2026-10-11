@@ -64,10 +64,14 @@ for method in methods:
         assert urlsplit(method['code_url']).scheme == 'https', f'Unsafe code URL: {method["id"]}'
         assert method.get('code_source') and method.get('code_checked_at'), f'Missing code provenance: {method["id"]}'
         assert urlsplit(method['code_source']).scheme == 'https'
+    if method.get('publication_type') == 'published':
+        assert method.get('venue') and method.get('publication_status'), f'Missing venue: {method["id"]}'
+        assert urlsplit(method.get('publication_source', '')).scheme == 'https', 'Published papers need venue evidence'
+        assert method.get('publication_date') and method['publication_date'] <= load('methods')['updated_at'], 'Future publication date'
     if method.get('collection') == 'companion':
-        assert method.get('metadata_source') and method.get('first_published') and method.get('added_at')
+        assert method.get('metadata_source') and (method.get('first_published') or method.get('publication_date')) and method.get('added_at')
         assert method['section'] is None, 'Companion additions must not invent manuscript sections'
-        assert method['first_published'] <= method['added_at'], 'Future paper date'
+        assert (method.get('first_published') or method['publication_date']) <= method['added_at'], 'Future paper date'
 for record in records:
     assert record['protocol_id'] in protocols
     assert record['source_id'] in sources
