@@ -24,7 +24,7 @@
     <nav class="topnav" aria-label="Main navigation">
       <a href="#view-overview" data-view="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v16M3 3h5a4 4 0 0 1 4 3 4 4 0 0 1 4-3h5v16h-5a4 4 0 0 0-4 2 4 4 0 0 0-4-2H3z"/></svg>Survey</a>
       <a href="#view-gallery" data-view="gallery"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>Method Archive <span class="nav-count" data-method-count>168</span></a>
-      <a href="#view-results" data-view="results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10m8 10V4m8 16V7"/></svg>Results</a>
+      <a href="#view-results" data-view="results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10m8 10V4m8 16V7"/></svg>Benchmarks</a>
       <a href="#view-applicability" data-view="applicability"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v16H3zM3 10h18M10 4v16M16 4v16"/></svg>Applicability</a>
     </nav>
     <div class="nav-right">
@@ -43,7 +43,7 @@
         <div class="hero-actions">
           <a class="button primary" href="https://arxiv.org/abs/2605.16966" target="_blank" rel="noopener">Read the paper ↗</a>
           <a class="button" href="#view-gallery">Method archive <span data-method-count>168</span></a>
-          <a class="button" href="#view-results">Quantitative results</a>
+          <a class="button" href="#view-results">Benchmarks</a>
           <button class="button" id="copy-citation">Copy BibTeX</button>
         </div>
         <div class="paper-meta"><span>arXiv:2605.16966</span><span>Updated <time data-snapshot>11 October 2026</time></span></div>
@@ -58,7 +58,7 @@
             <a class="scope-card id" href="#view-gallery?task=inverse_design"><div class="scope-top"><span class="scope-label">INVERSE DESIGN</span><strong data-task-count="inverse_design">57</strong></div><h3>Design for a target</h3><p>Find geometries, materials, or configurations that achieve a prescribed response.</p><ul><li>Physics-in-the-loop optimization</li><li>Learned-model-assisted design</li><li>Direct & generative design</li></ul><span class="scope-link">Explore methods →</span></a>
             <a class="scope-card control" href="#view-gallery?task=control"><div class="scope-top"><span class="scope-label">CONTROL PROBLEMS</span><strong data-task-count="control">33</strong></div><h3>Steer system dynamics</h3><p>Choose actions that guide evolving physical states toward a desired outcome.</p><ul><li>Optimization-based control</li><li>Offline & generative learning</li><li>Reinforcement learning</li></ul><span class="scope-link">Explore methods →</span></a>
           </div><p class="small-note">The archive also includes one study spanning multiple tasks. Counts describe the curated companion snapshot.</p></section>
-          <section id="resources" class="paper-section"><h2><span class="section-number">04</span> Research resources</h2><div class="resource-grid"><a href="#view-gallery"><span class="resource-index">01 / METHODS</span><h3><span data-method-count>168</span> indexed studies</h3><p>Search papers by task, method family, author, year, and code availability.</p><span>Open archive →</span></a><a href="#view-results"><span class="resource-index">02 / RESULTS</span><h3><span data-result-count>30</span> reported records</h3><p>Inspect accuracy and cost within seven matched protocols.</p><span>Explore results →</span></a><a href="#view-applicability"><span class="resource-index">03 / APPLICABILITY</span><h3>10 representative workflows</h3><p>Compare setup requirements and deployment operations.</p><span>View matrix →</span></a></div><div class="editorial-note"><strong>A living research companion.</strong> The archive includes <span data-companion-count>15</span> subsequent additions and <span data-code-count>45</span> papers with author-associated code. <a href="#view-gallery?collection=companion&amp;sort=newest">Browse additions →</a></div><div class="editorial-note"><strong>A note on quantitative evidence.</strong> Values are reported by the cited studies. Each result retains its source, experimental setting, and cost definition. The collection is not an independent reproduction or a cross-task ranking.</div></section>
+          <section id="resources" class="paper-section"><h2><span class="section-number">04</span> Research resources</h2><div class="resource-grid"><a href="#view-gallery"><span class="resource-index">01 / METHODS</span><h3><span data-method-count>168</span> indexed studies</h3><p>Search papers by task, method family, author, year, and code availability.</p><span>Open archive →</span></a><a href="#view-results"><span class="resource-index">02 / BENCHMARKS</span><h3><span data-result-count>79</span> method entries</h3><p>Explore accuracy, design quality, control, and efficiency across 16 protocols.</p><span>Explore benchmarks →</span></a><a href="#view-applicability"><span class="resource-index">03 / APPLICABILITY</span><h3>10 representative workflows</h3><p>Compare setup requirements and deployment operations.</p><span>View matrix →</span></a></div><div class="editorial-note"><strong>A living research companion.</strong> The archive includes <span data-companion-count>15</span> subsequent additions and <span data-code-count>45</span> papers with author-associated code. <a href="#view-gallery?collection=companion&amp;sort=newest">Browse additions →</a></div><div class="editorial-note"><strong>A note on quantitative evidence.</strong> Values are reported by the cited studies. Each result retains its source, experimental setting, and cost definition. The collection is not an independent reproduction or a cross-task ranking.</div></section>
           <section id="citation" class="paper-section"><h2><span class="section-number">05</span> Citation</h2><p class="section-lead">If this survey is useful to your research, please cite the paper.</p><div class="citation-box"><button id="copy-citation-bottom" class="small-button">Copy BibTeX</button><pre id="citation-text"></pre></div></section>
         </div>
       </div>
@@ -82,7 +82,26 @@
     </section>
 
     <section id="view-results" class="view" aria-labelledby="results-title" hidden>
-      <div class="workspace"><aside class="sidebar" aria-label="Evaluation protocols"><div class="section-kicker">EVIDENCE DIRECTORY</div><h2>Reported results</h2><div id="protocol-directory"></div><div class="sidebar-note">Values are transcribed from the cited studies. They are not new experiments or independent reproductions.</div><a class="sidebar-link" href="data/results.csv" download>Download all results · CSV ↓</a></aside><div class="workspace-main"><div class="page-intro"><div class="section-kicker">QUANTITATIVE RESULTS</div><h1 id="results-title">Quantitative Results <span class="heading-count">30 records</span></h1><p>Accuracy and computational cost from the literature, grouped by matched task and protocol. Inspect the original source behind every result.</p></div><div class="evidence-banner"><span aria-hidden="true">ⓘ</span><p><strong>Compare within each protocol.</strong> Hardware, training budgets, sampling, and evaluation settings differ across studies. NR means not reported. A dash means not applicable.</p></div><div id="protocol-content"></div><div class="data-downloads"><a href="data/results.json" download>Results JSON ↓</a><a href="data/protocols.json" download>Evaluation protocols ↓</a><a href="data/sources.json" download>Source records ↓</a></div></div></div>
+      <div class="benchmark-dashboard">
+        <header class="benchmark-intro">
+          <div><div class="section-kicker">EMPIRICAL BENCHMARKS</div><h1 id="results-title">Benchmarks &amp; Quantitative Comparisons</h1><p>Explore accuracy, design quality, control performance, and computational cost across inverse PDE tasks.</p></div>
+          <div class="benchmark-downloads"><a class="button primary" href="data/benchmarks.csv" download>Download CSV ↓</a><a class="button" href="data/benchmarks.json" download>JSON ↓</a><span>Curated <time id="benchmark-updated">11 October 2026</time></span></div>
+        </header>
+        <div class="benchmark-stats" id="benchmark-stats"></div>
+        <section class="benchmark-coverage" aria-labelledby="coverage-title">
+          <div class="benchmark-section-heading"><span>01</span><h2 id="coverage-title">Benchmark coverage</h2></div>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Benchmark coverage by task"><table class="coverage-table"><thead><tr><th scope="col">Research area</th><th scope="col">Evaluation targets</th><th scope="col">Benchmark sources</th><th scope="col">Protocols</th></tr></thead><tbody id="benchmark-coverage"></tbody></table></div>
+        </section>
+        <section class="benchmark-comparisons" aria-labelledby="comparisons-title">
+          <div class="benchmark-section-heading"><span>02</span><h2 id="comparisons-title">Quantitative comparisons</h2></div>
+          <p class="benchmark-reading-note">Values are reported by the cited papers. Compare methods within the same table and setting. <strong>Bold values</strong> mark the best reported value in a column, where appropriate. ↓ Lower is better. ↑ Higher is better. NR: not reported.</p>
+          <div class="benchmark-controls"><div id="benchmark-filters" class="benchmark-filters" role="group" aria-label="Filter benchmarks by research area"></div><label class="benchmark-search"><span class="sr-only">Search benchmarks and methods</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="benchmark-search" type="search" placeholder="Search benchmark or method…" autocomplete="off"></label></div>
+          <p id="benchmark-count" class="benchmark-count" role="status"></p>
+          <div id="benchmark-groups"></div>
+          <div id="benchmark-empty" class="benchmark-empty" hidden><h3>No matching benchmarks</h3><p>Try a different method, PDE, or research area.</p><button class="button" data-benchmark-reset>Clear filters</button></div>
+        </section>
+        <div class="benchmark-footnote"><p>Each comparison links to its primary source and author-associated implementation. Results have not been independently reproduced. Accuracy tables and compute profiles remain separate when the source does not provide matched measurements.</p><div><a href="data/benchmarks.csv" download>All comparisons · CSV ↓</a><a href="data/benchmarks.json" download>Data &amp; protocols · JSON ↓</a></div></div>
+      </div>
     </section>
 
     <section id="view-applicability" class="view" aria-labelledby="applicability-title" hidden>
