@@ -15,6 +15,44 @@ protocols = load('protocols')
 sources = load('sources')
 matrix = load('applicability')
 references = load('references')
+benchmarks = load('benchmarks')
+
+groups = benchmarks['groups']
+tables = [table for group in groups for table in group['tables']]
+assert len({group['id'] for group in groups}) == len(groups), 'Duplicate benchmark group'
+assert len({table['id'] for table in tables}) == len(tables), 'Duplicate benchmark protocol'
+assert benchmarks['evidence_type'] == 'literature_reported'
+expected_csv = []
+legacy_by_id = {record['record_id']: record for record in records}
+preserved = set()
+for group in groups:
+    assert group['task'] in {'inverse_problems', 'inverse_design', 'control', 'efficiency'}
+    for key in ['paper_url', 'code_url']:
+        assert urlsplit(group['source'][key]).scheme == 'https', f'Missing benchmark {key}'
+    for table in group['tables']:
+        assert table['location'] and table['setting'] and table['note'] and table['details']
+        assert urlsplit(table['source_url']).scheme == 'https'
+        keys = [metric['key'] for metric in table['metrics']]
+        assert len(keys) == len(set(keys))
+        assert len({row['method'] for row in table['rows']}) == len(table['rows'])
+        for row in table['rows']:
+            assert set(row['values']) == set(keys), f'Missing metric in {table["id"]}: {row["method"]}'
+            for metric in table['metrics']:
+                assert metric['direction'] in {'lower', 'higher'}
+                cell = row['values'][metric['key']]
+                if cell['value'] is not None:
+                    assert float('-inf') < float(cell['value']) < float('inf')
+                if cell.get('std') is not None:
+                    assert float(cell['std']) >= 0
+                if row.get('record_id'):
+                    original = legacy_by_id[row['record_id']][metric['key']]
+                    assert cell['value'] == original['value'] and cell.get('std') == original.get('std')
+                    preserved.add(row['record_id'])
+                expected_csv.append((table['id'], row['method'], metric['label'], str(cell['value'] or '') if cell['value'] is None else str(cell['value']), str(cell.get('std') or ''), cell.get('unit') or metric['unit']))
+assert preserved == set(legacy_by_id), 'Original results must remain available'
+with (DOCS / 'data/benchmarks.csv').open() as stream:
+    actual_csv = [(row['protocol_id'], row['method'], row['metric'], row['value'], row['std'], row['unit']) for row in csv.DictReader(stream)]
+assert actual_csv == expected_csv, 'Benchmark CSV and JSON differ'
 
 assert len({m['id'] for m in methods}) == len(methods), 'Duplicate method IDs'
 assert len({r['record_id'] for r in records}) == len(records), 'Duplicate result IDs'
@@ -81,4 +119,5 @@ for ref in parser.refs:
     elif not urlsplit(ref).scheme:
         assert (DOCS / unquote(ref.split('?')[0])).is_file(), f'Missing local asset {ref}'
 print(f'Validated {len(methods)} studies, {len(records)} results, {len(protocols)} protocols, and {len(matrix["rows"])} workflows.')
+print(f'Validated {len(groups)} benchmark comparisons, {len(tables)} protocols, and {sum(len(table["rows"]) for table in tables)} method entries. All original values are preserved.')
 print('All local links, IDs, source references, and quantitative missing-value states are consistent.')
