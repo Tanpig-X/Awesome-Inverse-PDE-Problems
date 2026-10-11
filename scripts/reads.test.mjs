@@ -12,7 +12,16 @@ async function run({origin='http://127.0.0.1:8765',pathname='/',hostname='127.0.
   return {calls,counts,badges};
 }
 test('local previews read the real total without incrementing',async()=>{const r=await run();assert.equal(r.calls.length,1);assert.match(r.calls[0].url,/readOnly=true$/);assert.equal(r.counts[0].textContent,'27');assert.match(r.badges[0].title,/not counted/);});
-test('production counts once with no cookies or referrer',async()=>{const r=await run({origin:'https://tanpig-x.github.io',pathname:'/Awesome-Inverse-PDE-problems/',hostname:'tanpig-x.github.io'});assert.equal(r.calls.length,1);assert.match(r.calls[0].url,/readOnly=false$/);assert.equal(r.calls[0].options.credentials,'omit');assert.equal(r.calls[0].options.referrerPolicy,'no-referrer');assert.equal(r.counts[0].textContent,r.counts[1].textContent);});
+test('production omits readOnly entirely so visits increment',async()=>{
+  for(const pathname of ['/Awesome-Inverse-PDE-problems/','/Awesome-Inverse-PDE-problems/index.html']) {
+    const r=await run({origin:'https://tanpig-x.github.io',pathname,hostname:'tanpig-x.github.io'});
+    assert.equal(r.calls.length,1);
+    assert.equal(r.calls[0].url,'https://counterapi.com/api/tanpig-x.github.io/view/awesome-inverse-pde-problems');
+    assert.equal(r.calls[0].options.credentials,'omit');
+    assert.equal(r.calls[0].options.referrerPolicy,'no-referrer');
+    assert.equal(r.counts[0].textContent,r.counts[1].textContent);
+  }
+});
 test('unrelated mirrors and repository paths never increment',async()=>{assert.equal((await run({origin:'https://example.com',hostname:'example.com'})).calls.length,0);assert.equal((await run({origin:'https://tanpig-x.github.io',hostname:'tanpig-x.github.io',pathname:'/another-project/'})).calls.length,0);});
 test('failures never fall back to a fake zero or retry',async()=>{const r=await run({fail:true});assert.equal(r.counts[0].textContent,'—');assert.equal(r.calls.length,1);assert.equal(r.badges[0].dataset.readsState,'unavailable');});
 test('wrong identities and invalid values cannot be shown',async()=>{for(const result of [{value:-1},{value:1,ns:'another-site'},null]) {const r=await run({result});assert.equal(r.counts[0].textContent,'—');}});
