@@ -1,0 +1,2633 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-10-11",
+  "evidence_type": "literature_reported",
+  "description": "Source-specific quantitative comparisons. Values are transcribed from primary papers and have not been independently reproduced. Best-value styling applies within a metric column only, with no cross-benchmark ranking.",
+  "groups": [
+    {
+      "id": "pdeinvbench_accuracy",
+      "task": "inverse_problems",
+      "title": "PDEInvBench",
+      "subtitle": "Parameter estimation across PDE families",
+      "summary": "Four neural architectures evaluated on held-out and shifted parameter ranges.",
+      "source": {
+        "id": "pdeinvbench2026",
+        "title": "PDEInvBench: A Comprehensive Dataset and Design Space Exploration of Neural Networks for PDE Inverse Problems",
+        "paper_url": "https://arxiv.org/abs/2605.25353",
+        "code_url": "https://github.com/ASK-Berkeley/PDEInvBench",
+        "version": "arXiv 2026 · v1",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "pdeinvbench_accuracy_6",
+          "label": "ID test",
+          "setting": "Held-out parameters inside the training range. About 5M parameters per model. Mean ± SD over three seeds.",
+          "location": "Table 6 · p. 37",
+          "source_url": "https://arxiv.org/html/2605.25353v1#A4.T6",
+          "metrics": [
+            {
+              "key": "system_0",
+              "label": "NS · unforced",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_1",
+              "label": "NS · forced",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_2",
+              "label": "KdV",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_3",
+              "label": "RD · k",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_4",
+              "label": "RD · Dᵤ",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_5",
+              "label": "Darcy",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            }
+          ],
+          "rows": [
+            {
+              "method": "FNO",
+              "values": {
+                "system_0": {
+                  "value": "0.0052",
+                  "std": "0.0004"
+                },
+                "system_1": {
+                  "value": "0.2402",
+                  "std": "0.0045"
+                },
+                "system_2": {
+                  "value": "0.0147",
+                  "std": "0.0007"
+                },
+                "system_3": {
+                  "value": "0.0331",
+                  "std": "0.0110"
+                },
+                "system_4": {
+                  "value": "0.0229",
+                  "std": "0.0020"
+                },
+                "system_5": {
+                  "value": "0.0671",
+                  "std": "0.0032"
+                }
+              }
+            },
+            {
+              "method": "ResNet",
+              "values": {
+                "system_0": {
+                  "value": "0.0146",
+                  "std": "0.0008"
+                },
+                "system_1": {
+                  "value": "0.3964",
+                  "std": "0.1228"
+                },
+                "system_2": {
+                  "value": "0.0197",
+                  "std": "0.0055"
+                },
+                "system_3": {
+                  "value": "0.3426",
+                  "std": "0.0968"
+                },
+                "system_4": {
+                  "value": "0.1740",
+                  "std": "0.0559"
+                },
+                "system_5": {
+                  "value": "0.0006",
+                  "std": "0.0001"
+                }
+              }
+            },
+            {
+              "method": "scOT",
+              "values": {
+                "system_0": {
+                  "value": "0.0164",
+                  "std": "0.0015"
+                },
+                "system_1": {
+                  "value": "0.2589",
+                  "std": "0.0173"
+                },
+                "system_2": {
+                  "value": "0.0223",
+                  "std": "0.0011"
+                },
+                "system_3": {
+                  "value": "0.0453",
+                  "std": "0.0049"
+                },
+                "system_4": {
+                  "value": "0.0749",
+                  "std": "0.0049"
+                },
+                "system_5": {
+                  "value": "0.0181",
+                  "std": "0.0005"
+                }
+              }
+            },
+            {
+              "method": "DeepONet",
+              "values": {
+                "system_0": {
+                  "value": "0.0174",
+                  "std": "0.0010"
+                },
+                "system_1": {
+                  "value": "0.2032",
+                  "std": "0.0035"
+                },
+                "system_2": {
+                  "value": "0.0166",
+                  "std": "0.0006"
+                },
+                "system_3": {
+                  "value": "0.4129",
+                  "std": "0.0194"
+                },
+                "system_4": {
+                  "value": "0.2406",
+                  "std": "0.0306"
+                },
+                "system_5": {
+                  "value": "0.0006",
+                  "std": "0.0003"
+                }
+              }
+            }
+          ],
+          "note": "Relative L₂ parameter error. NS: Navier–Stokes. RD: reaction–diffusion. Lower is better within each column.",
+          "details": {
+            "Evaluation": "Architecture comparison, about 5 million parameters per model. General training: 200 epochs, batch size 32, Adam with cosine learning-rate decay. Default temporal input uses two frames plus PDE derivatives.",
+            "Uncertainty": "Mean ± standard deviation over three seeded runs. Best validation checkpoint per run.",
+            "Interpretation": "Darcy appears only in Table 6. Do not invent Darcy OOD rows. Compare within the same system and split. Do not combine these accuracy rows with Table 4 compute profiles as a matched Pareto frontier. Reaction–diffusion learns either k or D_u while other parameters are known."
+          },
+          "highlight": true
+        },
+        {
+          "id": "pdeinvbench_accuracy_7",
+          "label": "OOD Non-Extreme",
+          "setting": "The middle 16% of parameter values, withheld from training. About 5M parameters per model. Mean ± SD over three seeds.",
+          "location": "Table 7 · p. 37",
+          "source_url": "https://arxiv.org/html/2605.25353v1#A4.T7",
+          "metrics": [
+            {
+              "key": "system_0",
+              "label": "NS · unforced",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_1",
+              "label": "NS · forced",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_2",
+              "label": "KdV",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_3",
+              "label": "RD · k",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_4",
+              "label": "RD · Dᵤ",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            }
+          ],
+          "rows": [
+            {
+              "method": "FNO",
+              "values": {
+                "system_0": {
+                  "value": "0.0039",
+                  "std": "0.0002"
+                },
+                "system_1": {
+                  "value": "0.5026",
+                  "std": "0.0242"
+                },
+                "system_2": {
+                  "value": "0.0362",
+                  "std": "0.0021"
+                },
+                "system_3": {
+                  "value": "0.0126",
+                  "std": "0.0025"
+                },
+                "system_4": {
+                  "value": "0.0292",
+                  "std": "0.0042"
+                }
+              }
+            },
+            {
+              "method": "ResNet",
+              "values": {
+                "system_0": {
+                  "value": "0.0086",
+                  "std": "0.0005"
+                },
+                "system_1": {
+                  "value": "0.2390",
+                  "std": "0.0038"
+                },
+                "system_2": {
+                  "value": "0.0635",
+                  "std": "0.0054"
+                },
+                "system_3": {
+                  "value": "0.2737",
+                  "std": "0.0508"
+                },
+                "system_4": {
+                  "value": "0.1285",
+                  "std": "0.0280"
+                }
+              }
+            },
+            {
+              "method": "scOT",
+              "values": {
+                "system_0": {
+                  "value": "0.0320",
+                  "std": "0.0046"
+                },
+                "system_1": {
+                  "value": "0.4657",
+                  "std": "0.0550"
+                },
+                "system_2": {
+                  "value": "0.0472",
+                  "std": "0.0008"
+                },
+                "system_3": {
+                  "value": "0.0249",
+                  "std": "0.0048"
+                },
+                "system_4": {
+                  "value": "0.0991",
+                  "std": "0.0310"
+                }
+              }
+            },
+            {
+              "method": "DeepONet",
+              "values": {
+                "system_0": {
+                  "value": "0.0097",
+                  "std": "0.0003"
+                },
+                "system_1": {
+                  "value": "0.2331",
+                  "std": "0.0215"
+                },
+                "system_2": {
+                  "value": "0.0624",
+                  "std": "0.0022"
+                },
+                "system_3": {
+                  "value": "0.2551",
+                  "std": "0.0863"
+                },
+                "system_4": {
+                  "value": "0.2041",
+                  "std": "0.0727"
+                }
+              }
+            }
+          ],
+          "note": "Relative L₂ parameter error. NS: Navier–Stokes. RD: reaction–diffusion. Lower is better within each column.",
+          "details": {
+            "Evaluation": "Architecture comparison, about 5 million parameters per model. General training: 200 epochs, batch size 32, Adam with cosine learning-rate decay. Default temporal input uses two frames plus PDE derivatives.",
+            "Uncertainty": "Mean ± standard deviation over three seeded runs. Best validation checkpoint per run.",
+            "Interpretation": "Darcy appears only in Table 6. Do not invent Darcy OOD rows. Compare within the same system and split. Do not combine these accuracy rows with Table 4 compute profiles as a matched Pareto frontier. Reaction–diffusion learns either k or D_u while other parameters are known."
+          },
+          "highlight": true
+        },
+        {
+          "id": "pdeinvbench_accuracy_8",
+          "label": "OOD Extreme",
+          "setting": "The outer 10% at each end of the parameter range. About 5M parameters per model. Mean ± SD over three seeds.",
+          "location": "Table 8 · p. 37",
+          "source_url": "https://arxiv.org/html/2605.25353v1#A4.T8",
+          "metrics": [
+            {
+              "key": "system_0",
+              "label": "NS · unforced",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_1",
+              "label": "NS · forced",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_2",
+              "label": "KdV",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_3",
+              "label": "RD · k",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            },
+            {
+              "key": "system_4",
+              "label": "RD · Dᵤ",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Relative L₂ parameter error"
+            }
+          ],
+          "rows": [
+            {
+              "method": "FNO",
+              "values": {
+                "system_0": {
+                  "value": "0.0831",
+                  "std": "0.0039"
+                },
+                "system_1": {
+                  "value": "0.3998",
+                  "std": "0.0208"
+                },
+                "system_2": {
+                  "value": "0.0465",
+                  "std": "0.0018"
+                },
+                "system_3": {
+                  "value": "11.0376",
+                  "std": "0.5903"
+                },
+                "system_4": {
+                  "value": "2.2911",
+                  "std": "1.2060"
+                }
+              }
+            },
+            {
+              "method": "ResNet",
+              "values": {
+                "system_0": {
+                  "value": "0.1608",
+                  "std": "0.0128"
+                },
+                "system_1": {
+                  "value": "0.9751",
+                  "std": "0.3837"
+                },
+                "system_2": {
+                  "value": "0.0758",
+                  "std": "0.0245"
+                },
+                "system_3": {
+                  "value": "1.8791",
+                  "std": "0.4135"
+                },
+                "system_4": {
+                  "value": "2.5445",
+                  "std": "0.3617"
+                }
+              }
+            },
+            {
+              "method": "scOT",
+              "values": {
+                "system_0": {
+                  "value": "0.0679",
+                  "std": "0.0046"
+                },
+                "system_1": {
+                  "value": "0.3669",
+                  "std": "0.0715"
+                },
+                "system_2": {
+                  "value": "0.0569",
+                  "std": "0.0028"
+                },
+                "system_3": {
+                  "value": "2.3177",
+                  "std": "0.1775"
+                },
+                "system_4": {
+                  "value": "1.6681",
+                  "std": "0.3646"
+                }
+              }
+            },
+            {
+              "method": "DeepONet",
+              "values": {
+                "system_0": {
+                  "value": "0.1919",
+                  "std": "0.0433"
+                },
+                "system_1": {
+                  "value": "0.5144",
+                  "std": "0.0149"
+                },
+                "system_2": {
+                  "value": "0.0546",
+                  "std": "0.0024"
+                },
+                "system_3": {
+                  "value": "1.8405",
+                  "std": "0.4136"
+                },
+                "system_4": {
+                  "value": "2.2492",
+                  "std": "0.6320"
+                }
+              }
+            }
+          ],
+          "note": "Relative L₂ parameter error. NS: Navier–Stokes. RD: reaction–diffusion. Lower is better within each column.",
+          "details": {
+            "Evaluation": "Architecture comparison, about 5 million parameters per model. General training: 200 epochs, batch size 32, Adam with cosine learning-rate decay. Default temporal input uses two frames plus PDE derivatives.",
+            "Uncertainty": "Mean ± standard deviation over three seeded runs. Best validation checkpoint per run.",
+            "Interpretation": "Darcy appears only in Table 6. Do not invent Darcy OOD rows. Compare within the same system and split. Do not combine these accuracy rows with Table 4 compute profiles as a matched Pareto frontier. Reaction–diffusion learns either k or D_u while other parameters are known."
+          },
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "id": "diffusionpde_inverse",
+      "task": "inverse_problems",
+      "title": "DiffusionPDE",
+      "subtitle": "Field recovery from partial observations",
+      "summary": "Five methods for recovering coefficients, forcing fields, or initial states.",
+      "source": {
+        "id": "diffusionpde2024",
+        "title": "DiffusionPDE: Generative PDE-Solving Under Partial Observation",
+        "paper_url": "https://arxiv.org/abs/2406.17763",
+        "code_url": "https://github.com/jhhuangchloe/DiffusionPDE",
+        "version": "NeurIPS 2024 · arXiv v2",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "diffusionpde_inverse_1",
+          "label": "Sparse observations",
+          "setting": "128 × 128 fields. 500 observations, or 1% near the cylinder for bounded NS.",
+          "location": "Table 1 · p. 7",
+          "source_url": "https://arxiv.org/html/2406.17763v2#S4.T1",
+          "metrics": [
+            {
+              "key": "system_0",
+              "label": "Darcy",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Coefficient error rate"
+            },
+            {
+              "key": "system_1",
+              "label": "Poisson",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Mean pixel-wise relative error"
+            },
+            {
+              "key": "system_2",
+              "label": "Helmholtz",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Mean pixel-wise relative error"
+            },
+            {
+              "key": "system_3",
+              "label": "NS · non-bounded",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Mean pixel-wise relative error"
+            },
+            {
+              "key": "system_4",
+              "label": "NS · bounded",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Mean pixel-wise relative error"
+            }
+          ],
+          "rows": [
+            {
+              "method": "DiffusionPDE",
+              "values": {
+                "system_0": {
+                  "value": "3.2",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "20.0",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "22.6",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "10.4",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "2.7",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "PINO",
+              "values": {
+                "system_0": {
+                  "value": "49.2",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "231.9",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "216.9",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "96.0",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "69.5",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "DeepONet",
+              "values": {
+                "system_0": {
+                  "value": "41.1",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "105.8",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "132.8",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "97.2",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "91.9",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "PINNs",
+              "values": {
+                "system_0": {
+                  "value": "59.7",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "130.0",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "160.0",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "146.8",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "105.5",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "FNO",
+              "values": {
+                "system_0": {
+                  "value": "49.3",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "232.7",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "218.2",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "96.0",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "69.6",
+                  "std": null
+                }
+              }
+            }
+          ],
+          "note": "All errors in %. Darcy measures coefficient classification error. Other columns measure pixel-wise relative error. Baselines were trained on full observations.",
+          "details": {
+            "Evaluation": "128 × 128 fields. Sparse setting: 500 solution/final-state observations for Darcy, Poisson, Helmholtz and non-bounded Navier–Stokes. Bounded Navier–Stokes uses 1% observations near the cylinder boundary. Evaluation averages 1,000 random scenes and observations.",
+            "Uncertainty": "These tables give means. Do not invent uncertainties for baseline methods.",
+            "Interpretation": "Darcy uses binary coefficient error rate. Other fields use mean pixel-wise relative error, not relative L2 error. Baseline networks are trained with full observations. Sparse-input testing therefore evaluates adaptation to missing inputs. Show this next to the sparse table. Full-observation results form a separate comparison. These are paper-reported results, not a reproduction or current universal ranking."
+          },
+          "highlight": true
+        },
+        {
+          "id": "diffusionpde_inverse_4",
+          "label": "Full observations",
+          "setting": "128 × 128 fields. Full observations supplied at test time.",
+          "location": "Table 4 · p. 20",
+          "source_url": "https://arxiv.org/html/2406.17763v2#A6.T4",
+          "metrics": [
+            {
+              "key": "system_0",
+              "label": "Darcy",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Coefficient error rate"
+            },
+            {
+              "key": "system_1",
+              "label": "Poisson",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Mean pixel-wise relative error"
+            },
+            {
+              "key": "system_2",
+              "label": "Helmholtz",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Mean pixel-wise relative error"
+            },
+            {
+              "key": "system_3",
+              "label": "NS · non-bounded",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Mean pixel-wise relative error"
+            },
+            {
+              "key": "system_4",
+              "label": "NS · bounded",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Mean pixel-wise relative error"
+            }
+          ],
+          "rows": [
+            {
+              "method": "DiffusionPDE",
+              "values": {
+                "system_0": {
+                  "value": "2.0",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "9.8",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "4.0",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "8.6",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "1.4",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "PINO",
+              "values": {
+                "system_0": {
+                  "value": "2.1",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "10.2",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "4.9",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "6.8",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "2.9",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "DeepONet",
+              "values": {
+                "system_0": {
+                  "value": "8.4",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "29.0",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "28.1",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "19.6",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "6.1",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "PINNs",
+              "values": {
+                "system_0": {
+                  "value": "10.1",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "28.5",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "29.2",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "27.8",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "7.6",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "FNO",
+              "values": {
+                "system_0": {
+                  "value": "5.6",
+                  "std": null
+                },
+                "system_1": {
+                  "value": "13.6",
+                  "std": null
+                },
+                "system_2": {
+                  "value": "5.0",
+                  "std": null
+                },
+                "system_3": {
+                  "value": "6.8",
+                  "std": null
+                },
+                "system_4": {
+                  "value": "3.0",
+                  "std": null
+                }
+              }
+            }
+          ],
+          "note": "All errors in %. Darcy measures coefficient classification error. Other columns measure pixel-wise relative error.",
+          "details": {
+            "Evaluation": "128 × 128 fields. Sparse setting: 500 solution/final-state observations for Darcy, Poisson, Helmholtz and non-bounded Navier–Stokes. Bounded Navier–Stokes uses 1% observations near the cylinder boundary. Evaluation averages 1,000 random scenes and observations.",
+            "Uncertainty": "These tables give means. Do not invent uncertainties for baseline methods.",
+            "Interpretation": "Darcy uses binary coefficient error rate. Other fields use mean pixel-wise relative error, not relative L2 error. Baseline networks are trained with full observations. Sparse-input testing therefore evaluates adaptation to missing inputs. Show this next to the sparse table. Full-observation results form a separate comparison. These are paper-reported results, not a reproduction or current universal ranking."
+          },
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "id": "pinnacle",
+      "task": "inverse_problems",
+      "title": "PINNacle",
+      "subtitle": "Physics-informed coefficient recovery",
+      "summary": "Two inverse tasks with per-instance optimization costs.",
+      "source": {
+        "id": "pinnacle2024",
+        "title": "PINNacle: A Comprehensive Benchmark of Physics-Informed Neural Networks for Solving PDEs",
+        "paper_url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/8c63299fb2820ef41cb05e2ff11836f5-Paper-Datasets_and_Benchmarks_Track.pdf",
+        "code_url": "https://github.com/i207M/PINNacle",
+        "version": "NeurIPS 2024",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "pinnacle_pinv",
+          "label": "Poisson · PInv",
+          "setting": "Poisson coefficient recovery on [0,1]². 2,500 noisy observations. 20,000 epochs, three runs.",
+          "metrics": [
+            {
+              "key": "metric_1",
+              "label": "Relative L₂ error",
+              "unit": "",
+              "direction": "lower",
+              "definition": ""
+            },
+            {
+              "key": "online_cost",
+              "label": "Solve time",
+              "unit": "s",
+              "direction": "lower",
+              "definition": ""
+            }
+          ],
+          "rows": [
+            {
+              "method": "PINN",
+              "values": {
+                "metric_1": {
+                  "value": "9.42e-2",
+                  "std": "1.58e-3",
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 7"
+                },
+                "online_cost": {
+                  "value": "453",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 14"
+                }
+              },
+              "record_id": "pinnacle_pinv__pinn",
+              "note": ""
+            },
+            {
+              "method": "PINN-w",
+              "values": {
+                "metric_1": {
+                  "value": "1.66e-1",
+                  "std": "5.45e-3",
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 7"
+                },
+                "online_cost": {
+                  "value": "488",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 14"
+                }
+              },
+              "record_id": "pinnacle_pinv__pinn_w",
+              "note": ""
+            },
+            {
+              "method": "gPINN",
+              "values": {
+                "metric_1": {
+                  "value": "8.03e-2",
+                  "std": "2.79e-3",
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 7"
+                },
+                "online_cost": {
+                  "value": "1500",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 14"
+                }
+              },
+              "record_id": "pinnacle_pinv__gpinn",
+              "note": ""
+            },
+            {
+              "method": "vPINN",
+              "values": {
+                "metric_1": {
+                  "value": "2.45e-2",
+                  "std": "1.03e-2",
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 7"
+                },
+                "online_cost": {
+                  "value": "490",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 14"
+                }
+              },
+              "record_id": "pinnacle_pinv__vpinn",
+              "note": ""
+            }
+          ],
+          "location": "Tables 7 & 14",
+          "source_url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/8c63299fb2820ef41cb05e2ff11836f5-Paper-Datasets_and_Benchmarks_Track.pdf",
+          "highlight": true,
+          "note": "Solve time includes per-instance optimization. It is not a trained model’s forward-pass latency.",
+          "details": {
+            "Setting": "PInv on [0,1]^2. 2,500 solution observations on a 50 x 50 grid. Gaussian noise is written N(0,0.1) in the paper. Preserve that notation without inferring a standard-deviation convention.",
+            "Evaluation": "Mean and standard deviation over three runs. 20,000 optimization epochs. The paper labels the error L2RE.",
+            "Cost definition": "Table 14 gives the mean runtime for per-instance optimization. This is online solution cost, not reusable offline pretraining and not a single network forward pass.",
+            "Hardware": "Section 4.1 reports a server with 20 Intel Xeon Silver 4210 CPUs and eight RTX 2080 Ti GPUs. Per-run GPU allocation is not specified. The paper describes 12 GB per GPU. This hardware description is retained as reported, not independently verified.",
+            "Selection": "Vanilla PINN, boundary-weighted PINN, gradient-enhanced PINN, and the variational method labelled vPINN in the source."
+          }
+        },
+        {
+          "id": "pinnacle_hinv",
+          "label": "Diffusion · HInv",
+          "setting": "Diffusion coefficient recovery on [−1,1]² × [0,1]. 2,500 observations. 20,000 epochs, three runs.",
+          "metrics": [
+            {
+              "key": "metric_1",
+              "label": "Relative L₂ error",
+              "unit": "",
+              "direction": "lower",
+              "definition": ""
+            },
+            {
+              "key": "online_cost",
+              "label": "Solve time",
+              "unit": "s",
+              "direction": "lower",
+              "definition": ""
+            }
+          ],
+          "rows": [
+            {
+              "method": "PINN",
+              "values": {
+                "metric_1": {
+                  "value": "1.57",
+                  "std": "7.21e-2",
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 7"
+                },
+                "online_cost": {
+                  "value": "1090",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 14"
+                }
+              },
+              "record_id": "pinnacle_hinv__pinn",
+              "note": ""
+            },
+            {
+              "method": "PINN-w",
+              "values": {
+                "metric_1": {
+                  "value": "5.26e-2",
+                  "std": "3.31e-3",
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 7"
+                },
+                "online_cost": {
+                  "value": "1120",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 14"
+                }
+              },
+              "record_id": "pinnacle_hinv__pinn_w",
+              "note": ""
+            },
+            {
+              "method": "gPINN",
+              "values": {
+                "metric_1": {
+                  "value": "4.84",
+                  "std": "2.07",
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 7"
+                },
+                "online_cost": {
+                  "value": "1560",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 14"
+                }
+              },
+              "record_id": "pinnacle_hinv__gpinn",
+              "note": ""
+            },
+            {
+              "method": "vPINN",
+              "values": {
+                "metric_1": {
+                  "value": "4.56e-1",
+                  "std": "1.30e-2",
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 7"
+                },
+                "online_cost": {
+                  "value": "1860",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 14"
+                }
+              },
+              "record_id": "pinnacle_hinv__vpinn",
+              "note": ""
+            }
+          ],
+          "location": "Tables 7 & 14",
+          "source_url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/8c63299fb2820ef41cb05e2ff11836f5-Paper-Datasets_and_Benchmarks_Track.pdf",
+          "highlight": true,
+          "note": "Solve time includes per-instance optimization. It is not a trained model’s forward-pass latency.",
+          "details": {
+            "Setting": "HInv on [-1,1]^2 x [0,1]. 2,500 random space-time observations. Gaussian noise written N(0,0.1).",
+            "Evaluation": "Same four method labels as PInv. Mean and standard deviation over three runs with 20,000 optimization epochs.",
+            "Cost definition": "Per-instance optimization runtime from Table 14.",
+            "Hardware": "Same reported server as PInv.",
+            "Selection": "Retains the same method set as PInv to show task dependence, including unsuccessful high-error results."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dom",
+      "task": "inverse_design",
+      "title": "Topology optimization",
+      "subtitle": "DOM & diffusion-based structural design",
+      "summary": "Engineering quality, constraint satisfaction, and inference time on 64 × 64 structures.",
+      "source": {
+        "id": "giannone2023dom",
+        "title": "Aligning Optimization Trajectories with Diffusion Models for Constrained Design Generation",
+        "paper_url": "https://arxiv.org/abs/2305.18470",
+        "code_url": "https://github.com/georgosgeorgos/trajectory-alignment-diffusion",
+        "version": "NeurIPS 2023",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "topology-dom-id-64",
+          "label": "In-distribution",
+          "setting": "64 × 64 minimum-compliance structures with prescribed loads, boundaries, and volume fractions.",
+          "location": "Table 3 · p. 9",
+          "source_url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/a2fe4bb50fc6f3564cee1551d6309fea-Paper-Conference.pdf#page=9",
+          "metrics": [
+            {
+              "key": "mean_compliance_error",
+              "label": "Mean CE",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Compliance error relative to the optimized SIMP reference, averaged over the reported evaluation."
+            },
+            {
+              "key": "median_compliance_error",
+              "label": "Median CE",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Median compliance error relative to the optimized SIMP reference."
+            },
+            {
+              "key": "volume_fraction_error",
+              "label": "Volume error",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Error with respect to the prescribed volume fraction."
+            },
+            {
+              "key": "floating_material",
+              "label": "Floating material",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Reported proportion with floating material, used as a manufacturability measure."
+            },
+            {
+              "key": "inference_time",
+              "label": "Inference time",
+              "unit": "s",
+              "direction": "lower",
+              "definition": "Reported time including preprocessing and sampling."
+            }
+          ],
+          "rows": [
+            {
+              "method": "TopologyGAN",
+              "values": {
+                "mean_compliance_error": {
+                  "value": "48.51",
+                  "std": null
+                },
+                "median_compliance_error": {
+                  "value": "2.06",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "11.87",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "46.78",
+                  "std": null
+                },
+                "inference_time": {
+                  "value": "3.37",
+                  "std": null
+                }
+              },
+              "note": "Steps: 1 · Conditioning: FIELD"
+            },
+            {
+              "method": "Conditional DDPM",
+              "values": {
+                "mean_compliance_error": {
+                  "value": "60.79",
+                  "std": null
+                },
+                "median_compliance_error": {
+                  "value": "3.15",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.72",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "8.72",
+                  "std": null
+                },
+                "inference_time": {
+                  "value": "2.23",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100 · Conditioning: RAW"
+            },
+            {
+              "method": "Consistency Model",
+              "values": {
+                "mean_compliance_error": {
+                  "value": "10.3",
+                  "std": null
+                },
+                "median_compliance_error": {
+                  "value": "2.2",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.64",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "8.72",
+                  "std": null
+                },
+                "inference_time": {
+                  "value": "2.35",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100/1 · Conditioning: KERNEL"
+            },
+            {
+              "method": "TopoDiff-FF",
+              "values": {
+                "mean_compliance_error": {
+                  "value": "24.9",
+                  "std": null
+                },
+                "median_compliance_error": {
+                  "value": "1.92",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "2.05",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "8.15",
+                  "std": null
+                },
+                "inference_time": {
+                  "value": "2.35",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100 · Conditioning: KERNEL"
+            },
+            {
+              "method": "TopoDiff",
+              "values": {
+                "mean_compliance_error": {
+                  "value": "5.46",
+                  "std": null
+                },
+                "median_compliance_error": {
+                  "value": "0.8",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.47",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "5.79",
+                  "std": null
+                },
+                "inference_time": {
+                  "value": "5.54",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100 · Conditioning: FIELD"
+            },
+            {
+              "method": "TopoDiff-GUIDED",
+              "values": {
+                "mean_compliance_error": {
+                  "value": "5.93",
+                  "std": null
+                },
+                "median_compliance_error": {
+                  "value": "0.83",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.49",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "5.82",
+                  "std": null
+                },
+                "inference_time": {
+                  "value": "5.77",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100 · Conditioning: FIELD"
+            },
+            {
+              "method": "DOM w/o TA",
+              "values": {
+                "mean_compliance_error": {
+                  "value": "13.61",
+                  "std": null
+                },
+                "median_compliance_error": {
+                  "value": "1.79",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.86",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "7.44",
+                  "std": null
+                },
+                "inference_time": {
+                  "value": "2.35",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100 · Conditioning: KERNEL"
+            },
+            {
+              "method": "DOM w/ TA",
+              "values": {
+                "mean_compliance_error": {
+                  "value": "4.44",
+                  "std": null
+                },
+                "median_compliance_error": {
+                  "value": "0.74",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.52",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "6.72",
+                  "std": null
+                },
+                "inference_time": {
+                  "value": "2.35",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100 · Conditioning: KERNEL"
+            }
+          ],
+          "highlight": true,
+          "note": "CE: compliance error. The evaluation filters high-compliance samples. The filtering threshold and GPU model are not specified.",
+          "details": {
+            "Training": "30,000 optimized topologies, 200,000 training iterations. DOM with trajectory alignment additionally uses five intermediate optimization steps per topology.",
+            "Protocol": "All numerical values are from the DOM paper Table 3, not combined with the earlier TopoDiff paper. Paper Section 4 says high-compliance generated configurations are filtered during performance evaluation. The numeric filter cutoff is not specified in the inspected text. The table reports 100 sampling steps for diffusion methods. Preserve the unusual Consistency Model steps label 100/1 exactly rather than inferring its meaning. Inference includes preprocessing and sampling. GPU model, batch size of timed inference and averaging convention for timing are not specified in the inspected table/text. Reported results have not been independently rerun.",
+            "Timing": "Preprocessing plus sampling in Table 3. Runtime is not reported for the OOD comparison."
+          }
+        },
+        {
+          "id": "topology-dom-ood-64",
+          "label": "Unseen constraints",
+          "setting": "64 × 64 minimum-compliance structures with prescribed loads, boundaries, and volume fractions.",
+          "location": "Table 5 · p. 10",
+          "source_url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/a2fe4bb50fc6f3564cee1551d6309fea-Paper-Conference.pdf#page=10",
+          "metrics": [
+            {
+              "key": "median_compliance_error",
+              "label": "Median CE",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Median compliance error relative to the optimized SIMP reference."
+            },
+            {
+              "key": "volume_fraction_error",
+              "label": "Volume error",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Error with respect to the prescribed volume fraction."
+            },
+            {
+              "key": "floating_material",
+              "label": "Floating material",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Reported proportion with floating material, used as a manufacturability measure."
+            }
+          ],
+          "rows": [
+            {
+              "method": "TopoDiff-FF",
+              "values": {
+                "median_compliance_error": {
+                  "value": "16.06",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.97",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "8.38",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100"
+            },
+            {
+              "method": "TopoDiff-G",
+              "values": {
+                "median_compliance_error": {
+                  "value": "1.82",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.8",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "6.21",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100"
+            },
+            {
+              "method": "DOM",
+              "values": {
+                "median_compliance_error": {
+                  "value": "3.47",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.59",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "8.02",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100"
+            },
+            {
+              "method": "DOM + SIMP (5)",
+              "values": {
+                "median_compliance_error": {
+                  "value": "1.89",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.77",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "10.19",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100+5"
+            },
+            {
+              "method": "DOM + SIMP (10)",
+              "values": {
+                "median_compliance_error": {
+                  "value": "1.15",
+                  "std": null
+                },
+                "volume_fraction_error": {
+                  "value": "1.1",
+                  "std": null
+                },
+                "floating_material": {
+                  "value": "2.61",
+                  "std": null
+                }
+              },
+              "note": "Steps: 100+10"
+            }
+          ],
+          "highlight": true,
+          "note": "CE: compliance error. The evaluation filters high-compliance samples. The filtering threshold and GPU model are not specified.",
+          "details": {
+            "Training": "30,000 optimized topologies, 200,000 training iterations. DOM with trajectory alignment additionally uses five intermediate optimization steps per topology.",
+            "Protocol": "Keep this comparison separate from the in-distribution table. Test constraints differ from the training constraints. The +5 and +10 labels denote additional direct SIMP optimization iterations following 100 sampling steps. The paper describes filtering high-compliance configurations during performance evaluation. No runtime appears in Table 5. Do not copy runtime from Table 3 or estimate the extra optimization cost. Reported results have not been independently rerun.",
+            "Timing": "Preprocessing plus sampling in Table 3. Runtime is not reported for the OOD comparison."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cindm",
+      "task": "inverse_design",
+      "title": "CinDM",
+      "subtitle": "Compositional airfoil design",
+      "summary": "Single- and two-airfoil objectives evaluated in the LilyPad simulator.",
+      "source": {
+        "id": "cindm2024",
+        "title": "Compositional Generative Inverse Design",
+        "paper_url": "https://arxiv.org/pdf/2401.13171v2",
+        "code_url": "https://github.com/AI4Science-WestlakeU/cindm",
+        "version": "ICLR 2024",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "cindm_one",
+          "label": "One airfoil",
+          "setting": "Train on 64 × 64 single-airfoil flow. Evaluate one-airfoil designs at 128 × 128.",
+          "metrics": [
+            {
+              "key": "metric_1",
+              "label": "−lift + drag",
+              "unit": "",
+              "direction": "lower",
+              "definition": ""
+            },
+            {
+              "key": "metric_2",
+              "label": "Lift / drag",
+              "unit": "",
+              "direction": "higher",
+              "definition": ""
+            }
+          ],
+          "rows": [
+            {
+              "method": "CEM + FNO",
+              "values": {
+                "metric_1": {
+                  "value": "0.0932",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "1.4005",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_one__cem_fno",
+              "note": ""
+            },
+            {
+              "method": "CEM + LE-PDE",
+              "values": {
+                "metric_1": {
+                  "value": "0.0794",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "1.4340",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_one__cem_le_pde",
+              "note": ""
+            },
+            {
+              "method": "Backprop + FNO",
+              "values": {
+                "metric_1": {
+                  "value": "0.0281",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "1.3300",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_one__backprop_fno",
+              "note": ""
+            },
+            {
+              "method": "Backprop + LE-PDE",
+              "values": {
+                "metric_1": {
+                  "value": "0.1072",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "1.3203",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_one__backprop_le_pde",
+              "note": ""
+            },
+            {
+              "method": "CinDM",
+              "values": {
+                "metric_1": {
+                  "value": "0.0797",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "2.1770",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_one__cindm",
+              "note": ""
+            }
+          ],
+          "location": "Table 3",
+          "source_url": "https://arxiv.org/pdf/2401.13171v2",
+          "highlight": true,
+          "note": "Each result averages the best design among 20 candidates over 10 batches. No matched runtime is reported.",
+          "details": {
+            "Setting": "One-airfoil design. Models trained on flow around a single shape at 64 x 64 resolution. Designs evaluated with Lily-Pad at 128 x 128 resolution.",
+            "Evaluation": "Appendix D.1: 10 batches, 20 candidates per batch. Select the best design in each batch, then average across 10 batches. Table 3 gives means without uncertainty intervals.",
+            "Cost definition": "No task-matched wall-clock training or design times identified in Table 3 and Appendix D.1. N-body training times in Appendix A must not be reused for airfoils.",
+            "Hardware": "NR for task-matched wall-clock timings.",
+            "Selection": "All five methods in Table 3. Both metrics are retained because their rankings differ."
+          }
+        },
+        {
+          "id": "cindm_two",
+          "label": "Two airfoils",
+          "setting": "Compose two-airfoil designs from single-airfoil training data. Evaluate at 128 × 128.",
+          "metrics": [
+            {
+              "key": "metric_1",
+              "label": "−lift + drag",
+              "unit": "",
+              "direction": "lower",
+              "definition": ""
+            },
+            {
+              "key": "metric_2",
+              "label": "Lift / drag",
+              "unit": "",
+              "direction": "higher",
+              "definition": ""
+            }
+          ],
+          "rows": [
+            {
+              "method": "CEM + FNO",
+              "values": {
+                "metric_1": {
+                  "value": "0.3890",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "1.0914",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_two__cem_fno",
+              "note": ""
+            },
+            {
+              "method": "CEM + LE-PDE",
+              "values": {
+                "metric_1": {
+                  "value": "0.1691",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "1.0568",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_two__cem_le_pde",
+              "note": ""
+            },
+            {
+              "method": "Backprop + FNO",
+              "values": {
+                "metric_1": {
+                  "value": "0.1837",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "0.9722",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_two__backprop_fno",
+              "note": ""
+            },
+            {
+              "method": "Backprop + LE-PDE",
+              "values": {
+                "metric_1": {
+                  "value": "0.0891",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "0.9866",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_two__backprop_le_pde",
+              "note": ""
+            },
+            {
+              "method": "CinDM",
+              "values": {
+                "metric_1": {
+                  "value": "0.1986",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_objective_units",
+                  "source_location": "Table 3"
+                },
+                "metric_2": {
+                  "value": "1.4216",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "dimensionless",
+                  "source_location": "Table 3"
+                }
+              },
+              "record_id": "cindm_two__cindm",
+              "note": ""
+            }
+          ],
+          "location": "Table 3",
+          "source_url": "https://arxiv.org/pdf/2401.13171v2",
+          "highlight": true,
+          "note": "Each result averages the best design among 20 candidates over 10 batches. No matched runtime is reported.",
+          "details": {
+            "Setting": "Compositional generalization to two airfoils after training on single-shape flows. Training 64 x 64, Lily-Pad evaluation 128 x 128.",
+            "Evaluation": "Best of 20 per batch, averaged across 10 batches, as in one-airfoil design. Do not interpret as mean performance of all generated candidates.",
+            "Cost definition": "Task-matched wall-clock costs NR.",
+            "Hardware": "NR for task-matched wall-clock timings.",
+            "Selection": "All five methods in Table 3."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cldiffphycon_burgers_half",
+      "task": "control",
+      "title": "CL-DiffPhyCon",
+      "subtitle": "Closed-loop Burgers control",
+      "summary": "Control quality and inference time under the same half-domain evaluation.",
+      "source": {
+        "id": "cldiffphycon2025",
+        "title": "CL-DiffPhyCon: Closed-loop Diffusion Control of Complex Physical Systems",
+        "paper_url": "https://openreview.net/forum?id=PiHGrTTnvb",
+        "code_url": "https://github.com/AI4Science-WestlakeU/CL_DiffPhyCon",
+        "version": "ICLR 2025",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "cldiffphycon_burgers_half_table",
+          "label": "Half-domain control",
+          "setting": "Outer-half observation, actuation, and evaluation. 50 test trajectories. A100 80 GB + 16 CPU cores.",
+          "location": "Table 4 · p. 23",
+          "source_url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/f6f4b34d255c2c6c2391af975bed0428-Paper-Conference.pdf#page=23",
+          "metrics": [
+            {
+              "key": "objective",
+              "label": "Control objective J",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Time-space integral of squared tracking error over the observed outer halves."
+            },
+            {
+              "key": "inference_seconds",
+              "label": "Inference time",
+              "unit": "s",
+              "direction": "lower",
+              "definition": "Reported inference time under the Table 4 hardware and half-domain setting."
+            }
+          ],
+          "rows": [
+            {
+              "method": "BC",
+              "values": {
+                "objective": {
+                  "value": "0.2558",
+                  "std": null
+                },
+                "inference_seconds": {
+                  "value": "0.7150",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "BPPO",
+              "values": {
+                "objective": {
+                  "value": "0.2033",
+                  "std": null
+                },
+                "inference_seconds": {
+                  "value": "0.7342",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "PID",
+              "values": {
+                "objective": {
+                  "value": "0.2212",
+                  "std": null
+                },
+                "inference_seconds": {
+                  "value": "0.7236",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "DiffPhyCon-1",
+              "values": {
+                "objective": {
+                  "value": "0.0196",
+                  "std": null
+                },
+                "inference_seconds": {
+                  "value": "39.9720",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "DiffPhyCon-5",
+              "values": {
+                "objective": {
+                  "value": "0.0184",
+                  "std": null
+                },
+                "inference_seconds": {
+                  "value": "8.4481",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "DiffPhyCon-15",
+              "values": {
+                "objective": {
+                  "value": "0.0192",
+                  "std": null
+                },
+                "inference_seconds": {
+                  "value": "3.8935",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "RDM",
+              "values": {
+                "objective": {
+                  "value": "0.0196",
+                  "std": null
+                },
+                "inference_seconds": {
+                  "value": "9.8153",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "CL-DiffPhyCon",
+              "values": {
+                "objective": {
+                  "value": "0.0090",
+                  "std": null
+                },
+                "inference_seconds": {
+                  "value": "9.7516",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "CL-DiffPhyCon (DDIM)",
+              "values": {
+                "objective": {
+                  "value": "0.0104",
+                  "std": null
+                },
+                "inference_seconds": {
+                  "value": "0.7628",
+                  "std": null
+                }
+              }
+            }
+          ],
+          "highlight": true,
+          "note": "Default diffusion: 900 steps. DDIM: 30 steps. J and inference time are reported together for this setting.",
+          "details": {
+            "Protocol": "This evaluates trajectory tracking on the outer half of the spatial domain. Do not merge with DiffPhyCon 2024 terminal-state PO-FC errors. The source reports means but no standard deviations in Table 4. Table 1's time is averaged across six settings. Prefer this Table 4 for a matched accuracy-versus-time chart. The source's 'inference time' should retain its label without inventing a batch size or per-step normalization.",
+            "Metric definitions": "Control objective J: Time-space integral of squared tracking error over the observed outer halves. Inference time: Reported inference time under the Table 4 hardware and half-domain setting."
+          }
+        }
+      ]
+    },
+    {
+      "id": "safediffcon_smoke",
+      "task": "control",
+      "title": "SafeDiffCon",
+      "subtitle": "Safety-constrained smoke control",
+      "summary": "Delivery performance evaluated jointly with safety violations.",
+      "source": {
+        "id": "safediffcon2025",
+        "title": "From Uncertain to Safe: Conformal Adaptation of Diffusion Models for Safe PDE Control",
+        "paper_url": "https://proceedings.mlr.press/v267/hu25t.html",
+        "code_url": "https://github.com/AI4Science-WestlakeU/safediffcon",
+        "version": "ICML 2025",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "safediffcon_smoke_table",
+          "label": "2D smoke",
+          "setting": "128 × 128 smoke flow. Peripheral actuation toward a target exit. Hazardous-region smoke fraction capped at 0.1.",
+          "location": "Table 2 · p. 7",
+          "source_url": "https://raw.githubusercontent.com/mlresearch/v267/main/assets/hu25t/hu25t.pdf#page=7",
+          "metrics": [
+            {
+              "key": "objective",
+              "label": "Control objective J",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Negative fraction of smoke reaching the target exit."
+            },
+            {
+              "key": "violation_magnitude",
+              "label": "Violation magnitude",
+              "unit": "",
+              "direction": "lower",
+              "definition": "Reported SVM, defined as max(s - 0.1, 0)."
+            },
+            {
+              "key": "unsafe_percent",
+              "label": "Unsafe trajectories",
+              "unit": "%",
+              "direction": "lower",
+              "definition": "Percentage of evaluated trajectories exceeding the safety bound."
+            }
+          ],
+          "rows": [
+            {
+              "method": "BC",
+              "values": {
+                "objective": {
+                  "value": "-0.7104",
+                  "std": null
+                },
+                "violation_magnitude": {
+                  "value": "0.7156",
+                  "std": null
+                },
+                "unsafe_percent": {
+                  "value": "88",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "BC-Safe",
+              "values": {
+                "objective": {
+                  "value": "-0.2520",
+                  "std": null
+                },
+                "violation_magnitude": {
+                  "value": "0.0330",
+                  "std": null
+                },
+                "unsafe_percent": {
+                  "value": "8",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "CDT",
+              "values": {
+                "objective": {
+                  "value": "-0.7025",
+                  "std": null
+                },
+                "violation_magnitude": {
+                  "value": "0.2519",
+                  "std": null
+                },
+                "unsafe_percent": {
+                  "value": "30",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "TREBI",
+              "values": {
+                "objective": {
+                  "value": "-0.7019",
+                  "std": null
+                },
+                "violation_magnitude": {
+                  "value": "0.0808",
+                  "std": null
+                },
+                "unsafe_percent": {
+                  "value": "18",
+                  "std": null
+                }
+              }
+            },
+            {
+              "method": "SafeDiffCon",
+              "values": {
+                "objective": {
+                  "value": "-0.3548",
+                  "std": null
+                },
+                "violation_magnitude": {
+                  "value": "0.0000",
+                  "std": null
+                },
+                "unsafe_percent": {
+                  "value": "0",
+                  "std": null
+                }
+              }
+            }
+          ],
+          "highlight": false,
+          "note": "Read J together with safety. A lower objective with unsafe trajectories is not a better feasible controller. Zero unsafe trajectories describes this test set only.",
+          "details": {
+            "Protocol": "Never rank this safety-constrained task by the control objective alone. More negative unsafe baselines do not win the constrained task. Only SafeDiffCon reports zero unsafe trajectories in this table. This is finite-test evidence, not a universal safety guarantee. No standard deviations or matched inference times in Table 2. Retain SVM exactly as reported. The text defines it but does not specify an extra normalization in the table.",
+            "Metric definitions": "Control objective J: Negative fraction of smoke reaching the target exit. Safety violation magnitude: Reported SVM, defined as max(s - 0.1, 0). Unsafe trajectories: Percentage of evaluated trajectories exceeding the safety bound."
+          }
+        }
+      ]
+    },
+    {
+      "id": "diffphycon",
+      "task": "control",
+      "title": "DiffPhyCon",
+      "subtitle": "Open-loop Burgers control",
+      "summary": "Terminal-state control under partial observation and full actuation.",
+      "source": {
+        "id": "diffphycon2024",
+        "title": "A Generative Approach to Control Complex Physical Systems",
+        "paper_url": "https://arxiv.org/pdf/2407.06494v3",
+        "code_url": "https://github.com/AI4Science-WestlakeU/diffphycon",
+        "version": "NeurIPS 2024",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "burgers_pofc",
+          "label": "Burgers · PO-FC",
+          "setting": "1D Burgers. Partial observation, full control. Physical control energy is not fixed across methods.",
+          "metrics": [
+            {
+              "key": "metric_1",
+              "label": "J actual",
+              "unit": "",
+              "direction": "lower",
+              "definition": ""
+            },
+            {
+              "key": "offline_cost",
+              "label": "Offline cost",
+              "unit": "h",
+              "direction": "lower",
+              "definition": ""
+            },
+            {
+              "key": "online_cost",
+              "label": "Online cost",
+              "unit": "s",
+              "direction": "lower",
+              "definition": ""
+            }
+          ],
+          "rows": [
+            {
+              "method": "BC",
+              "values": {
+                "metric_1": {
+                  "value": "0.02836",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_control_error_units",
+                  "source_location": "Table 1, PO-FC"
+                },
+                "offline_cost": {
+                  "value": "8.8",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                },
+                "online_cost": {
+                  "value": "1.22",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                }
+              },
+              "record_id": "burgers_pofc__bc",
+              "note": "Tables 1 and 23 are linked at the method/task level only."
+            },
+            {
+              "method": "BPPO",
+              "values": {
+                "metric_1": {
+                  "value": "0.02771",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_control_error_units",
+                  "source_location": "Table 1, PO-FC"
+                },
+                "offline_cost": {
+                  "value": "8.9",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                },
+                "online_cost": {
+                  "value": "0.82",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                }
+              },
+              "record_id": "burgers_pofc__bppo",
+              "note": "Tables 1 and 23 are linked at the method/task level only."
+            },
+            {
+              "method": "DiffPhyCon-lite",
+              "values": {
+                "metric_1": {
+                  "value": "0.01139",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_control_error_units",
+                  "source_location": "Table 1, PO-FC"
+                },
+                "offline_cost": {
+                  "value": "1.7",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                },
+                "online_cost": {
+                  "value": "21.13",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                }
+              },
+              "record_id": "burgers_pofc__diffphycon_lite",
+              "note": "Tables 1 and 23 are linked at the method/task level only."
+            },
+            {
+              "method": "DiffPhyCon",
+              "values": {
+                "metric_1": {
+                  "value": "0.01103",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_control_error_units",
+                  "source_location": "Table 1, PO-FC"
+                },
+                "offline_cost": {
+                  "value": "4.4",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                },
+                "online_cost": {
+                  "value": "58.97",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                }
+              },
+              "record_id": "burgers_pofc__diffphycon",
+              "note": "Tables 1 and 23 are linked at the method/task level only."
+            },
+            {
+              "method": "SL",
+              "values": {
+                "metric_1": {
+                  "value": "0.09752",
+                  "std": null,
+                  "status": "reported",
+                  "unit": "source_control_error_units",
+                  "source_location": "Table 1, PO-FC"
+                },
+                "offline_cost": {
+                  "value": "2.6",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                },
+                "online_cost": {
+                  "value": "74.85",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                }
+              },
+              "record_id": "burgers_pofc__sl",
+              "note": "Tables 1 and 23 are linked at the method/task level only."
+            },
+            {
+              "method": "DiffPhyCon-DDIM (8 steps)",
+              "values": {
+                "metric_1": {
+                  "value": null,
+                  "std": null,
+                  "status": "NR",
+                  "unit": "source_control_error_units",
+                  "source_location": "No matched performance in Tables 1 and 23"
+                },
+                "offline_cost": {
+                  "value": "1.7",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                },
+                "online_cost": {
+                  "value": "0.53",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 23"
+                }
+              },
+              "record_id": "burgers_pofc__diffphycon_ddim_8_steps",
+              "note": "Timing-only record. Do not attach the accuracy of the default sampler."
+            }
+          ],
+          "location": "Tables 1 & 23",
+          "source_url": "https://arxiv.org/pdf/2407.06494v3",
+          "highlight": false,
+          "note": "Errors (Table 1) and costs (Table 23) come from separate reporting locations. They do not establish a matched accuracy–time frontier.",
+          "details": {
+            "Setting": "Only PO-FC entries from Table 1. Do not combine with FO-PC or PO-PC. Control error is evaluated with the ground-truth dynamics.",
+            "Evaluation": "Table 1 reports best J_actual. The control-energy budget is not fixed across these reported minima. Physical actuation energy is not computational cost.",
+            "Cost definition": "Appendix K.4 identifies PO-FC as the timed setting and reports average inference time over test samples. Performance and timing are matched by method and task. Exact checkpoints and guidance settings are not cross-indexed between Tables 1 and 23, so these are reported summaries, not a measured fixed-budget Pareto frontier.",
+            "Hardware": "Online times: one Tesla V100 GPU and eight CPUs. Offline hardware varies by method and is stored per row.",
+            "Selection": "BC, BPPO, DiffPhyCon-lite and DiffPhyCon in the main table. SL is included in the supplement. SAC timings are excluded because Table 23 does not identify which SAC variant in Table 1 was timed. DDIM has a separate timing-only record with no borrowed accuracy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pdeinv_compute",
+      "task": "efficiency",
+      "title": "PDEInvBench",
+      "subtitle": "Training, throughput & memory",
+      "summary": "Architecture profiles reported separately from the accuracy evaluation.",
+      "source": {
+        "id": "pdeinvbench2026",
+        "title": "PDEInvBench: A Comprehensive Dataset and Design Space Exploration of Neural Networks for PDE Inverse Problems",
+        "paper_url": "https://arxiv.org/pdf/2605.25353v1",
+        "code_url": "https://github.com/ASK-Berkeley/PDEInvBench",
+        "version": "arXiv 2026 · v1",
+        "checked_at": "2026-10-11"
+      },
+      "tables": [
+        {
+          "id": "pdeinv_ns_compute",
+          "label": "Navier–Stokes",
+          "setting": "2D unforced Navier–Stokes. FNO, scOT, and ResNet with approximately 5M parameters.",
+          "metrics": [
+            {
+              "key": "offline_cost",
+              "label": "Training cost",
+              "unit": "h",
+              "direction": "lower",
+              "definition": ""
+            },
+            {
+              "key": "online_cost",
+              "label": "Batch throughput",
+              "unit": "it/s per batch",
+              "direction": "higher",
+              "definition": ""
+            },
+            {
+              "key": "memory_gb",
+              "label": "GPU memory",
+              "unit": "GB",
+              "direction": "lower",
+              "definition": ""
+            }
+          ],
+          "rows": [
+            {
+              "method": "FNO",
+              "values": {
+                "offline_cost": {
+                  "value": "1",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "online_cost": {
+                  "value": "33.64",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "memory_gb": {
+                  "value": "4.7",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                }
+              },
+              "record_id": "pdeinv_ns_compute__fno",
+              "note": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+            },
+            {
+              "method": "scOT",
+              "values": {
+                "offline_cost": {
+                  "value": "2.5",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "online_cost": {
+                  "value": "11.15",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "memory_gb": {
+                  "value": "4.2",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                }
+              },
+              "record_id": "pdeinv_ns_compute__scot",
+              "note": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+            },
+            {
+              "method": "ResNet",
+              "values": {
+                "offline_cost": {
+                  "value": "1.5",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "online_cost": {
+                  "value": "22.07",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "memory_gb": {
+                  "value": "3.8",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                }
+              },
+              "record_id": "pdeinv_ns_compute__resnet",
+              "note": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+            }
+          ],
+          "location": "Table 4",
+          "source_url": "https://arxiv.org/pdf/2605.25353v1",
+          "highlight": true,
+          "note": "Batch size 32, 200 epochs. Throughput is iterations/s, not per-sample latency. These compute profiles are not paired with the accuracy tables.",
+          "details": {
+            "Setting": "Compute profiles in Table 4. Appendix C.1.2 reports batch size 32 and 200 training epochs.",
+            "Evaluation": "No accuracy is attached to these cost rows. Table 4 does not cross-index an accuracy operating point.",
+            "Cost definition": "Inference is reported in iterations per second per batch. Preserve it/s. It is not per-instance latency, and no serial latency is inferred by dividing by batch size.",
+            "Hardware": "Appendix C.1.3 calls the device NVIDIA RTX A100. This nonstandard label is quoted as reported. Exact device identity and memory capacity are unresolved.",
+            "Selection": "All three architectures in Table 4 for 2DNS."
+          }
+        },
+        {
+          "id": "pdeinv_darcy_compute",
+          "label": "Darcy",
+          "setting": "Darcy flow. FNO, scOT, and ResNet with approximately 5M parameters.",
+          "metrics": [
+            {
+              "key": "offline_cost",
+              "label": "Training cost",
+              "unit": "min",
+              "direction": "lower",
+              "definition": ""
+            },
+            {
+              "key": "online_cost",
+              "label": "Batch throughput",
+              "unit": "it/s per batch",
+              "direction": "higher",
+              "definition": ""
+            },
+            {
+              "key": "memory_gb",
+              "label": "GPU memory",
+              "unit": "GB",
+              "direction": "lower",
+              "definition": ""
+            }
+          ],
+          "rows": [
+            {
+              "method": "FNO",
+              "values": {
+                "offline_cost": {
+                  "value": "18",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "online_cost": {
+                  "value": "9.5",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "memory_gb": {
+                  "value": "7.5",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                }
+              },
+              "record_id": "pdeinv_darcy_compute__fno",
+              "note": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+            },
+            {
+              "method": "scOT",
+              "values": {
+                "offline_cost": {
+                  "value": "29",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "online_cost": {
+                  "value": "3.45",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "memory_gb": {
+                  "value": "4.5",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                }
+              },
+              "record_id": "pdeinv_darcy_compute__scot",
+              "note": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+            },
+            {
+              "method": "ResNet",
+              "values": {
+                "offline_cost": {
+                  "value": "60",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "online_cost": {
+                  "value": "1.1",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                },
+                "memory_gb": {
+                  "value": "8",
+                  "std": null,
+                  "status": "reported",
+                  "unit": null,
+                  "source_location": "Table 4"
+                }
+              },
+              "record_id": "pdeinv_darcy_compute__resnet",
+              "note": "Throughput, not per-instance latency. Source does not cross-index accuracy or a test split."
+            }
+          ],
+          "location": "Table 4",
+          "source_url": "https://arxiv.org/pdf/2605.25353v1",
+          "highlight": true,
+          "note": "Batch size 32, 200 epochs. Throughput is iterations/s, not per-sample latency. These compute profiles are not paired with the accuracy tables.",
+          "details": {
+            "Setting": "2DDF rows in Table 4. General protocol: batch size 32, 200 epochs.",
+            "Evaluation": "Cost-only records. No accuracy or split is inferred from other figures.",
+            "Cost definition": "Training durations preserved in minutes. Inference throughput preserved in it/s per batch.",
+            "Hardware": "Source reports NVIDIA RTX A100, with unresolved device naming.",
+            "Selection": "All three architectures in Table 4 for 2DDF."
+          }
+        }
+      ]
+    }
+  ]
+}
