@@ -2,6 +2,14 @@
 
 ## 2026-10-11
 
+### New literature additions
+
+- Added 17 previously unlisted studies: 6 inverse-problem papers, 6 inverse-design papers, and 5 PDE-control papers.
+- Expanded the archive from 190 to 207 studies and the 2025–2026 publication collection from 62 to 79.
+- Verified 16 author-associated code links for the additions, bringing the archive total to 90.
+- Checked titles, persistent identifiers, and publication versions against the existing archive before adding records.
+- Synchronized website counts and README publication tables. Existing studies and benchmark data are unchanged.
+
 ### Publication metadata follow-up
 
 - Refreshed 47 existing records across inverse problems, inverse design, and PDE control.
