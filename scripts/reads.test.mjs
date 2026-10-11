@@ -13,7 +13,7 @@ async function run({origin='http://127.0.0.1:8765',pathname='/',hostname='127.0.
 }
 test('local previews read the real total without incrementing',async()=>{const r=await run();assert.equal(r.calls.length,1);assert.match(r.calls[0].url,/readOnly=true$/);assert.equal(r.counts[0].textContent,'27');assert.match(r.badges[0].title,/not counted/);});
 test('production omits readOnly entirely so visits increment',async()=>{
-  for(const pathname of ['/Awesome-Inverse-PDE-problems/','/Awesome-Inverse-PDE-problems/index.html']) {
+  for(const pathname of ['/Awesome-Inverse-PDE-Problems/','/Awesome-Inverse-PDE-Problems/index.html','/Awesome-Inverse-PDE-problems/','/Awesome-Inverse-PDE-problems/index.html']) {
     const r=await run({origin:'https://tanpig-x.github.io',pathname,hostname:'tanpig-x.github.io'});
     assert.equal(r.calls.length,1);
     assert.equal(r.calls[0].url,'https://counterapi.com/api/tanpig-x.github.io/view/awesome-inverse-pde-problems');
