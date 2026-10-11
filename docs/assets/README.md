@@ -1,0 +1,7 @@
+# Asset provenance
+
+- `zju-emblem.png` is the official Zhejiang University emblem, downloaded unchanged from [ZJU's identity page](https://www.zju.edu.cn/514/listm.htm). [Original PNG](https://www.zju.edu.cn/_upload/article/images/c3/98/1fb1d281492eb477a098ef7a2901/05966b26-ab45-470d-94c1-99b1e02d12f4.png). The header clips only the surrounding white margin with CSS. The mark belongs to Zhejiang University and is not covered by this repository's code license.
+- `survey-overview.png` is the authors' original overview figure, copied unchanged from the survey revision's `Figures/Overview.png`. Its scientific content is not altered.
+- `fonts/Libertinus*.woff2` contains Libertinus fonts under the SIL Open Font License. The unmodified webfont files were obtained from the reference survey repository. The upstream license is included in `fonts/OFL-Libertinus.txt`. [Upstream font project](https://github.com/alerque/libertinus).
+
+The website was designed after studying the typography, navigation, directory hierarchy, card structure, and reading counter in the [MIT CDFG reference website](https://mit-cdfg.github.io/Survey-AI-for-3D-modeling-Robotics/#view-gallery) and its [source repository](https://github.com/MIT-CDFG/Survey-AI-for-3D-modeling-Robotics). Application HTML, CSS, and JavaScript in this repository are newly written. The MIT logos, research content, and counter endpoint are not reused.
