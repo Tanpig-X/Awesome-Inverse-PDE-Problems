@@ -30,7 +30,9 @@
   const timeout = setTimeout(() => controller.abort(), 8000);
   // One request per document load. Local QA only reads the same public total.
   // Do not retry a failed hit: the server might already have counted it.
-  fetch(endpoint + (onProduction ? '?readOnly=false' : '?readOnly=true'), {
+  // Omit readOnly on live visits. The service treats even the string "false"
+  // as read-only, so sending readOnly=false prevents the count from increasing.
+  fetch(endpoint + (onProduction ? '' : '?readOnly=true'), {
     credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store', signal: controller.signal
   }).then(response => {
     if (!response.ok) throw new Error('Counter unavailable');
