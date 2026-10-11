@@ -106,23 +106,76 @@ function showMethod(id) {
   $('#dialog-content').innerHTML=`<div class="section-kicker">${escapeHTML(taskNames[m.task])} · ${m.year}</div><h2 id="dialog-title" class="dialog-title">${escapeHTML(m.name)}</h2><p class="dialog-paper-title">${escapeHTML(m.title)}</p><p class="dialog-authors">${escapeHTML(m.authors).replace(/ and /g,' · ')}</p>${m.description?`<p class="dialog-description">${escapeHTML(m.description.replace(/[.!?]$/,''))}.</p>`:''}<div class="dialog-meta"><span>${escapeHTML(m.family)}</span><span>${m.collection==='companion'?'Companion addition · '+escapeHTML(m.added_at):'Survey section '+escapeHTML(m.section)}</span>${m.publication_status?`<span>${escapeHTML(m.publication_status)}</span>`:''}${m.last_revised?`<span>Revised ${escapeHTML(m.last_revised)}</span>`:''}${m.featured?'<span>Selected timeline milestone</span>':''}</div><div class="dialog-actions">${externalLink(paperURL(m),safeURL(m.url)?'Read the paper ↗':'Find the paper ↗','button primary')}${hasCode(m)?externalLink(m.code_url,'Official code ↗','button code-button'):''}<button class="button" data-copy-record="${escapeHTML(m.id)}">Copy reference</button></div><p class="code-provenance">${hasCode(m)?`Code link verified ${escapeHTML(m.code_checked_at)} against ${externalLink(m.code_source,'the author-associated source')}. ${escapeHTML(m.code_note||'Availability has been checked. Results have not been independently reproduced.')}`:m.code_status==='Unavailable at verification'?`The author-listed repository was unavailable when checked on ${escapeHTML(m.code_checked_at)}.`:'No official code link has been verified in this index yet.'}</p>`;
   $('#method-dialog').showModal();
 }
-const protocolShortNames = {pinnacle_pinv:'Poisson recovery · PInv',pinnacle_hinv:'Diffusion recovery · HInv',cindm_one:'One-airfoil design',cindm_two:'Two-airfoil design',burgers_pofc:'Burgers control · PO-FC',pdeinv_ns_compute:'Navier–Stokes compute',pdeinv_darcy_compute:'Darcy compute'};
-function formatValue(value, includeUnit = false) {
-  if (!value || value.status==='NA') return '<span class="value-na">–</span>';
-  if (value.status==='NR' || value.value==null) return '<span class="value-na">NR</span>';
-  let out=escapeHTML(value.value);
-  if (value.std) out+=`<small>± ${escapeHTML(value.std)}</small>`;
-  if (includeUnit && value.unit) out+=`<small>${escapeHTML(value.unit)}</small>`;
-  return out;
+const benchmarkAreas = {
+  inverse_problems: {name:'Inverse problems', short:'Inverse problems', code:'IP', description:'Recover coefficients, parameters, and unobserved fields.', targets:'Parameter identification · field reconstruction · sparse observations'},
+  inverse_design: {name:'Inverse design', short:'Inverse design', code:'ID', description:'Evaluate design objectives and physical constraints.', targets:'Structural topology · airfoil geometry · compositional design'},
+  control: {name:'Control problems', short:'Control', code:'C', description:'Compare control quality, inference time, and safety.', targets:'Burgers tracking · terminal control · smoke transport'},
+  efficiency: {name:'Computational efficiency', short:'Compute profiles', code:'E', description:'Training cost, throughput, and GPU memory under reported hardware.', targets:'Training time · batch throughput · GPU memory'}
+};
+const benchmarkSelections = new Map();
+const benchmarkTables = () => data.benchmarks.groups.flatMap(group=>group.tables);
+const benchmarkEntryCount = () => benchmarkTables().reduce((count,table)=>count+table.rows.length,0);
+
+function benchmarkValue(cell) {
+  if (!cell || cell.value == null) return `<span class="value-na">${cell?.status==='NA'?'–':'NR'}</span>`;
+  return `${escapeHTML(cell.value)}${cell.std!=null?`<small>± ${escapeHTML(cell.std)}</small>`:''}${cell.unit && !['dimensionless','source_objective_units','source_control_error_units'].includes(cell.unit)?`<small>${escapeHTML(cell.unit)}</small>`:''}`;
+}
+function benchmarkTableHTML(table, group) {
+  const best = Object.fromEntries(table.metrics.map(metric=>{
+    const values = table.rows.map(row=>row.values[metric.key]?.value).filter(value=>value!=null).map(Number);
+    return [metric.key, metric.direction==='higher' ? Math.max(...values) : Math.min(...values)];
+  }));
+  return `<div class="benchmark-setting"><div><strong>${escapeHTML(table.label)}</strong><p>${escapeHTML(table.setting)}</p></div>${externalLink(table.source_url,table.location+' ↗','benchmark-table-source')}</div>
+    <div class="benchmark-scroll-hint">Scroll horizontally to compare all columns →</div><div class="table-scroll benchmark-table-wrap" tabindex="0" role="region" aria-label="${escapeHTML(group.title+' '+table.label)} comparison"><table class="benchmark-table"><caption class="sr-only">${escapeHTML(group.title+' — '+table.label)}. Literature-reported results.</caption><thead><tr><th scope="col">Method</th>${table.metrics.map(metric=>`<th scope="col" class="number" title="${escapeHTML(metric.definition||metric.label)}">${escapeHTML(metric.label)} <span>${metric.direction==='higher'?'↑':'↓'}</span>${metric.unit?`<small>${escapeHTML(metric.unit)}</small>`:''}</th>`).join('')}</tr></thead><tbody>${table.rows.map(row=>`<tr><th scope="row">${escapeHTML(row.method)}</th>${table.metrics.map(metric=>{
+      const cell=row.values[metric.key];
+      const winner=table.highlight && cell?.value!=null && Number(cell.value)===best[metric.key];
+      return `<td class="number${winner?' best-value':''}">${winner?'<strong>':''}${benchmarkValue(cell)}${winner?'</strong>':''}</td>`;
+    }).join('')}</tr>`).join('')}</tbody></table></div>
+    <p class="benchmark-table-note">${escapeHTML(table.note)}</p>
+    <details class="benchmark-protocol"><summary>Protocol, metric definitions &amp; reporting notes</summary><dl>${Object.entries(table.details).map(([name,value])=>`<dt>${escapeHTML(name)}</dt><dd>${escapeHTML(value)}</dd>`).join('')}${table.metrics.filter(metric=>metric.definition).map(metric=>`<dt>${escapeHTML(metric.label)}</dt><dd>${escapeHTML(metric.definition)}</dd>`).join('')}</dl>${table.rows.some(row=>row.note)?`<ul>${table.rows.filter(row=>row.note).map(row=>`<li><strong>${escapeHTML(row.method)}.</strong> ${escapeHTML(row.note)}</li>`).join('')}</ul>`:''}<p>${externalLink(group.source.paper_url,group.source.title+' ↗')}</p></details>`;
+}
+function benchmarkGroupHTML(group) {
+  const {params}=route();
+  const selected=params.get('protocol');
+  const current=group.tables.find(table=>table.id===selected)||group.tables.find(table=>table.id===benchmarkSelections.get(group.id))||group.tables[0];
+  return `<article class="benchmark-card" id="benchmark-${escapeHTML(group.id)}" data-benchmark-area="${group.task}">
+    <header class="benchmark-card-header"><div><div class="benchmark-card-kicker">${escapeHTML(group.source.version)}<span>${group.tables.length} ${group.tables.length===1?'protocol':'protocols'}</span></div><h3>${escapeHTML(group.title)} <span>${escapeHTML(group.subtitle)}</span></h3><p>${escapeHTML(group.summary)}</p></div><div class="benchmark-source-links">${externalLink(group.source.paper_url,'Paper ↗')}${externalLink(group.source.code_url,'Benchmark code ↗')}</div></header>
+    ${group.tables.length>1?`<div class="benchmark-tabs" role="group" aria-label="${escapeHTML(group.title)} evaluation setting">${group.tables.map(table=>`<button data-benchmark-group="${escapeHTML(group.id)}" data-benchmark-table="${escapeHTML(table.id)}" aria-pressed="${table===current}">${escapeHTML(table.label)}</button>`).join('')}</div>`:''}
+    <div class="benchmark-table-panel" id="benchmark-panel-${escapeHTML(group.id)}">${benchmarkTableHTML(current,group)}</div>
+  </article>`;
+}
+function renderBenchmarkGroups() {
+  const {params}=route();
+  const task=Object.hasOwn(benchmarkAreas,params.get('task'))?params.get('task'):'all';
+  const terms=(params.get('q')||'').toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+  const groups=data.benchmarks.groups.filter(group=>(task==='all'||group.task===task)&&terms.every(term=>[group.title,group.subtitle,group.summary,group.source.version,...group.tables.flatMap(table=>[table.label,table.setting,...table.rows.map(row=>row.method)])].join(' ').toLocaleLowerCase().includes(term)));
+  $('#benchmark-groups').innerHTML=Object.entries(benchmarkAreas).map(([area,meta],i)=>{
+    const found=groups.filter(group=>group.task===area);
+    if(!found.length)return '';
+    return `<section class="benchmark-area" aria-labelledby="benchmark-area-${area}"><header class="benchmark-area-heading"><span class="benchmark-area-code" data-area="${area}">${meta.code}</span><div><h2 id="benchmark-area-${area}">${escapeHTML(meta.name)}</h2><p>${escapeHTML(meta.description)}</p></div><span class="benchmark-area-total">${found.length} ${found.length===1?'comparison':'comparisons'}</span></header>${found.map(benchmarkGroupHTML).join('')}</section>`;
+  }).join('');
+  $('#benchmark-empty').hidden=groups.length>0;
+  const protocolCount=groups.reduce((n,g)=>n+g.tables.length,0);
+  $('#benchmark-count').textContent=`${groups.length} benchmark ${groups.length===1?'comparison':'comparisons'} · ${protocolCount} evaluation ${protocolCount===1?'protocol':'protocols'}${terms.length?' matching “'+(params.get('q')||'')+'”':''}`;
+  $$('#benchmark-filters button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.benchmarkTask===task)));
 }
 function renderResults() {
-  const {params}=route();
-  const protocol=Object.hasOwn(data.protocols,params.get('protocol'))?params.get('protocol'):'pinnacle_pinv';
-  $('#protocol-directory').innerHTML=Object.entries(data.protocols).map(([key,p],i)=>`${[0,2,4,5].includes(i)?`<div class="directory-title">${i===5?'Efficiency profiles':escapeHTML(taskNames[p.task_class])}</div>`:''}<button class="directory-button" data-protocol="${key}" aria-pressed="${key===protocol}">${escapeHTML(protocolShortNames[key])}<span>${data.results.records.filter(r=>r.protocol_id===key).length}</span></button>`).join('');
-  const p=data.protocols[protocol], source=data.sources[p.source_id], rows=data.results.records.filter(r=>r.protocol_id===protocol), compute=p.metrics.length===0, second=p.metrics.length>1;
-  const metricHeader=protocol.startsWith('pinnacle')?'Relative L₂ error ↓':protocol.startsWith('cindm')?'−lift + drag ↓':'J actual ↓';
-  $('#protocol-content').innerHTML=`<div class="protocol-header"><div><div class="protocol-badge">${compute?'Computational efficiency':escapeHTML(taskNames[p.task_class])} · ${rows.length} methods</div><h2>${escapeHTML(p.title)}</h2><p>${escapeHTML(source.version)}</p></div>${externalLink(source.url,'Original source ↗','protocol-source')}</div><div class="protocol-metrics">${(compute?['Compute-only records. Accuracy is not inferred.']:p.metrics).map(t=>`<span class="metric-description">${escapeHTML(t)}</span>`).join('')}</div><div class="table-scroll" tabindex="0" role="region" aria-label="${escapeHTML(p.title)} results"><table><caption class="sr-only">Literature-reported results for ${escapeHTML(p.title)}</caption><thead><tr><th scope="col">Method</th>${!compute?`<th scope="col">${metricHeader}</th>`:''}${second?'<th scope="col">Lift / drag ↑</th>':''}<th scope="col">${compute?'Training cost':'Offline cost'}</th><th scope="col">${compute?'Batch throughput':'Online cost'}</th>${compute?'<th scope="col">Memory</th>':''}<th scope="col">Source location</th></tr></thead><tbody>${rows.map(r=>`<tr><td><strong>${escapeHTML(r.method)}</strong></td>${!compute?`<td class="number">${formatValue(r.metric_1)}</td>`:''}${second?`<td class="number">${formatValue(r.metric_2)}</td>`:''}<td class="number">${formatValue(r.offline_cost,true)}</td><td class="number">${formatValue(r.online_cost,true)}</td>${compute?`<td class="number">${formatValue(r.memory_gb,true)}</td>`:''}<td><small>${escapeHTML([...new Set([!compute?r.metric_1.source_location:null,r.online_cost.status==='reported'?r.online_cost.source_location:null].filter(Boolean))].join(' · '))}</small></td></tr>`).join('')}</tbody></table></div><details class="protocol-details" open><summary>Experimental protocol & interpretation</summary><dl>${Object.entries({Setting:p.setting,Evaluation:p.evaluation,'Cost definition':p.timing,Hardware:p.hardware,Selection:p.selection}).map(([k,v])=>`<dt>${escapeHTML(k)}</dt><dd>${escapeHTML(v)}</dd>`).join('')}</dl></details><details class="protocol-details"><summary>Per-method hardware & reporting notes</summary><dl>${rows.map(r=>`<dt>${escapeHTML(r.method)}</dt><dd>Offline: ${escapeHTML(r.offline_cost.hardware || 'NR')}. Online: ${escapeHTML(r.online_cost.hardware || 'NR')}.${r.notes?' '+escapeHTML(r.notes):''}</dd>`).join('')}</dl></details><p class="source-list">Source: ${externalLink(source.url,source.title)}. ${escapeHTML(Object.values(source.locations).join(' · '))}.</p>`;
+  const groups=data.benchmarks.groups;
+  const sources=new Set(groups.map(group=>group.source.id));
+  $('#benchmark-stats').innerHTML=[['Evaluation protocols','Distinct tasks, splits & settings',benchmarkTables().length],['Method entries','Accuracy, quality & cost',benchmarkEntryCount()],['Primary sources','Every source includes code',sources.size],['Research areas','Inverse problems · design · control',3]].map(([label,note,count])=>`<div class="benchmark-stat"><strong>${count}</strong><span>${label}</span><small>${note}</small></div>`).join('');
+  $('#benchmark-updated').textContent=new Date(data.benchmarks.updated_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+  $('#benchmark-coverage').innerHTML=Object.entries(benchmarkAreas).map(([area,meta])=>{
+    const found=groups.filter(group=>group.task===area);
+    return `<tr><th scope="row"><button data-benchmark-task="${area}" class="coverage-link"><span class="benchmark-area-code" data-area="${area}">${meta.code}</span>${meta.name} ↗</button></th><td>${meta.targets}</td><td>${found.map(group=>escapeHTML(group.title)).join(' · ')}</td><td class="number">${found.reduce((n,group)=>n+group.tables.length,0)}</td></tr>`;
+  }).join('');
+  $('#benchmark-filters').innerHTML=Object.entries({all:{short:'All benchmarks'},...benchmarkAreas}).map(([task,meta])=>`<button data-benchmark-task="${task}" aria-pressed="false">${meta.short}</button>`).join('');
+  $('#benchmark-search').value=route().params.get('q')||'';
+  renderBenchmarkGroups();
+  const selected=route().params.get('protocol');
+  const group=groups.find(group=>group.tables.some(table=>table.id===selected));
+  if(group)requestAnimationFrame(()=>$('#benchmark-'+group.id)?.scrollIntoView({block:'start'}));
 }
+
 function matrixMatches(row) { return matrixTask==='all'||row.tasks.split(',').map(x=>x.trim()).includes(matrixTask); }
 function renderMatrix() {
   const rows=data.applicability.rows.filter(matrixMatches);
@@ -139,7 +192,7 @@ async function loadData() {
     const embedded=$('#embedded-research-data');
     if (embedded) data=JSON.parse(embedded.textContent);
     else {
-      const names=['methods','results','protocols','sources','applicability','references'];
+      const names=['methods','results','protocols','sources','applicability','references','benchmarks'];
       const values=await Promise.all(names.map(async name=>{const response=await fetch(`data/${name}.json`);if(!response.ok)throw new Error(`Cannot load ${name}`);return response.json();}));
       data=Object.fromEntries(names.map((name,i)=>[name,values[i]]));
     }
@@ -148,11 +201,19 @@ async function loadData() {
     $$('[data-code-count]').forEach(el=>el.textContent=data.methods.records.filter(hasCode).length);
     $$('[data-companion-count]').forEach(el=>el.textContent=data.methods.records.filter(m=>m.collection==='companion').length);
     $$('[data-snapshot]').forEach(el=>{el.textContent=new Date(data.methods.updated_at||data.methods.snapshot).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});});
-    $$('[data-result-count]').forEach(el=>el.textContent=data.results.records.length);
+    $$('[data-result-count]').forEach(el=>el.textContent=benchmarkEntryCount());
     renderRoute();
   } catch(error) {$('#load-error').hidden=false;console.error('Research data could not be loaded',error);}
 }
 
+$('#benchmark-search').addEventListener('input',()=>{
+  const {params}=route();
+  const query=$('#benchmark-search').value.trim();
+  if(query)params.set('q',query);else params.delete('q');
+  params.delete('protocol');
+  history.replaceState(null,'','#view-results'+(params.size?'?'+params.toString():''));
+  renderBenchmarkGroups();
+});
 $('#citation-text').textContent=citation;
 $('#copy-citation').addEventListener('click',()=>copyText(citation));
 $('#copy-citation-bottom').addEventListener('click',()=>copyText(citation));
@@ -166,7 +227,19 @@ document.addEventListener('click',event=>{
   const target=event.target.closest('button'); if(!target||!data)return;
   if(target.dataset.libraryTask) {clearTimeout(searchTimer);setRoute('gallery',{task:target.dataset.libraryTask,q:$('#method-search').value.trim(),year:$('#year-filter').value,sort:$('#sort-methods').value,code:$('#code-filter').value,collection:$('#collection-filter').value});}
   if(target.dataset.libraryFamily) {clearTimeout(searchTimer);setRoute('gallery',{task:target.dataset.familyTask,family:target.dataset.libraryFamily,q:$('#method-search').value.trim(),year:$('#year-filter').value,sort:$('#sort-methods').value,code:$('#code-filter').value,collection:$('#collection-filter').value});}
-  if(target.dataset.protocol) setRoute('results',{protocol:target.dataset.protocol});
+  if(target.dataset.benchmarkTask) setRoute('results',{task:target.dataset.benchmarkTask,q:$('#benchmark-search').value.trim()});
+  if(target.hasAttribute('data-benchmark-reset')) setRoute('results');
+  if(target.dataset.benchmarkTable) {
+    const group=data.benchmarks.groups.find(group=>group.id===target.dataset.benchmarkGroup);
+    const table=group?.tables.find(table=>table.id===target.dataset.benchmarkTable);
+    if(table) {
+      benchmarkSelections.set(group.id,table.id);
+      const {params}=route();params.set('protocol',table.id);
+      history.replaceState(null,'','#view-results?'+params.toString());
+      $('#benchmark-panel-'+group.id).innerHTML=benchmarkTableHTML(table,group);
+      $$('[data-benchmark-group="'+group.id+'"]').forEach(button=>button.setAttribute('aria-pressed',String(button===target)));
+    }
+  }
   if(target.dataset.method)showMethod(target.dataset.method);
   if(target.dataset.copyRecord){const m=data.methods.records.find(m=>m.id===target.dataset.copyRecord);copyText(`${m.authors}. ${m.title}. ${m.year}.${m.url?' '+m.url:''}`);}
   if(target.dataset.matrixTask){matrixTask=target.dataset.matrixTask;$$('[data-matrix-task]').forEach(el=>el.setAttribute('aria-pressed',String(el===target)));renderMatrix();}
