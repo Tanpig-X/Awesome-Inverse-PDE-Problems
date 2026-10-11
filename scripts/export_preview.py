@@ -12,7 +12,7 @@ html = (docs / 'index.html').read_text()
 html = html.replace('<link rel="stylesheet" href="styles.css">', '<style>' + (docs / 'styles.css').read_text() + '</style>')
 for name in ['app.js','reads.js']:
     html = html.replace(f'  <script src="{name}" defer></script>', '')
-payload = {name: json.loads((docs / 'data' / f'{name}.json').read_text()) for name in ['methods', 'results', 'protocols', 'sources', 'applicability', 'references']}
+payload = {name: json.loads((docs / 'data' / f'{name}.json').read_text()) for name in ['methods', 'results', 'protocols', 'sources', 'applicability', 'references', 'benchmarks']}
 embedded = '<script id="embedded-research-data" type="application/json">' + json.dumps(payload, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
 for path in (docs / 'assets').rglob('*'):
     if not path.is_file() or path.suffix not in {'.svg','.png','.woff2'}:
