@@ -19,7 +19,8 @@ let data, visibleLimit = 24, libraryLayout = 'grid', matrixTask = 'all', toastTi
 const safeURL = value => { try { const u = new URL(value); return ['https:', 'http:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
 const paperURL = method => safeURL(method.url) || 'https://scholar.google.com/scholar?q=' + encodeURIComponent(method.title);
 const hasCode = method => Boolean(safeURL(method.code_url));
-const paperDate = method => method.first_published || `${method.year}-01-01`;
+const paperDate = method => method.first_published || method.publication_date || `${method.year}-01-01`;
+const isRecentPublication = method => method.publication_type === 'published' && method.year >= 2025 && method.year <= 2026;
 const paperLabel = method => safeURL(method.url) ? 'Paper ↗' : 'Find paper ↗';
 const externalLink = (url, text, cls = '') => `<a class="${cls}" href="${escapeHTML(safeURL(url))}" target="_blank" rel="noopener">${escapeHTML(text)}</a>`;
 
@@ -77,7 +78,7 @@ function renderLibrary(syncInputs) {
     $('#family-filter').value = family;
     if (!$('#family-filter').value) $('#family-filter').value='all';
     $('#code-filter').value=code==='available'?'available':'all';
-    $('#collection-filter').value=['survey','companion'].includes(collection)?collection:'all';
+    $('#collection-filter').value=['survey','companion','published'].includes(collection)?collection:'all';
     $('#year-filter').value=year;
     if (!$('#year-filter').value) $('#year-filter').value='all';
     $('#sort-methods').value=sort;
@@ -91,11 +92,11 @@ function renderLibrary(syncInputs) {
   }).join('');
   $$('.archive-scope [data-library-task]').forEach(button=>{button.classList.toggle('selected',button.dataset.libraryTask===task);button.setAttribute('aria-pressed',String(button.dataset.libraryTask===task));});
   const terms = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
-  const found = all.filter(m=>(task==='all'||m.task===task)&&(family==='all'||m.family===family)&&(year==='all'||String(m.year)===year)&&(code!=='available'||hasCode(m))&&(collection==='all'||(collection==='companion'?m.collection==='companion':m.collection!=='companion'))&&terms.every(term=>[m.name,m.title,m.authors,m.description,m.family,taskNames[m.task]].join(' ').toLocaleLowerCase().includes(term)));
+  const found = all.filter(m=>(task==='all'||m.task===task)&&(family==='all'||m.family===family)&&(year==='all'||String(m.year)===year)&&(code!=='available'||hasCode(m))&&(collection==='all'||(collection==='published'?isRecentPublication(m):collection==='companion'?m.collection==='companion':m.collection!=='companion'))&&terms.every(term=>[m.name,m.title,m.authors,m.description,m.family,m.venue,m.publication_status,taskNames[m.task]].join(' ').toLocaleLowerCase().includes(term)));
   found.sort((a,b)=> sort==='added' ? (b.added_at||'').localeCompare(a.added_at||'')||paperDate(b).localeCompare(paperDate(a))||a.name.localeCompare(b.name) : sort==='newest' ? b.year-a.year||paperDate(b).localeCompare(paperDate(a))||a.name.localeCompare(b.name) : sort==='oldest' ? a.year-b.year||a.name.localeCompare(b.name) : sort==='name' ? a.name.localeCompare(b.name) : Number(b.featured)-Number(a.featured)||b.year-a.year||a.name.localeCompare(b.name));
   $('#method-count').textContent=`${found.length} ${found.length===1?'study':'studies'}${task==='all'?' across all tasks':' in '+taskNames[task].toLowerCase()}${found.length>visibleLimit?` · showing ${visibleLimit}`:''}`;
   $('#method-grid').className='method-grid'+(libraryLayout==='list'?' list':'');
-  $('#method-grid').innerHTML=found.slice(0,visibleLimit).map(m=>`<article class="method-card" data-task="${m.task}"><div class="method-card-top"><span class="method-tag">${escapeHTML(taskNames[m.task])}</span><span class="method-year">${m.year}</span></div><div class="method-content"><div class="method-category">${escapeHTML(m.family)}${m.collection==='companion'?'<span class="addition-label">ADDED</span>':''}</div><h2><button class="method-title-button" data-method="${escapeHTML(m.id)}">${escapeHTML(m.name)}</button></h2><p class="method-paper-title">${escapeHTML(m.title)}</p>${m.description?`<div class="method-insight">${escapeHTML(m.description)}</div>`:`<div class="method-location">Survey section ${escapeHTML(m.section)}</div>`}<div class="method-footer">${externalLink(paperURL(m),paperLabel(m))}${hasCode(m)?externalLink(m.code_url,'Code ↗','code-link'):''}<button data-method="${escapeHTML(m.id)}" aria-label="Details for ${escapeHTML(m.name)}">Details ↗</button></div></div></article>`).join('');
+  $('#method-grid').innerHTML=found.slice(0,visibleLimit).map(m=>`<article class="method-card" data-task="${m.task}"><div class="method-card-top"><span class="method-tag">${escapeHTML(taskNames[m.task])}</span><span class="method-year">${m.year}</span></div><div class="method-content"><div class="method-category">${escapeHTML(m.family)}${m.collection==='companion'?'<span class="addition-label">ADDED</span>':''}</div><h2><button class="method-title-button" data-method="${escapeHTML(m.id)}">${escapeHTML(m.name)}</button></h2><p class="method-paper-title">${escapeHTML(m.title)}</p>${m.publication_status?`<div class="method-location">${escapeHTML(m.publication_status)}</div>`:''}${m.description?`<div class="method-insight">${escapeHTML(m.description)}</div>`:`<div class="method-location">Survey section ${escapeHTML(m.section)}</div>`}<div class="method-footer">${externalLink(paperURL(m),paperLabel(m))}${hasCode(m)?externalLink(m.code_url,m.code_format==='supplementary_zip'?'Code (ZIP) ↗':'Code ↗','code-link'):''}<button data-method="${escapeHTML(m.id)}" aria-label="Details for ${escapeHTML(m.name)}">Details ↗</button></div></div></article>`).join('');
   $('#empty-methods').hidden=found.length>0;
   $('#show-more').hidden=found.length<=visibleLimit;
   $('#show-more').textContent=`Show ${Math.min(24,Math.max(0,found.length-visibleLimit))} more studies`;
@@ -103,7 +104,7 @@ function renderLibrary(syncInputs) {
 function showMethod(id) {
   const m=data.methods.records.find(m=>m.id===id);
   if (!m) return;
-  $('#dialog-content').innerHTML=`<div class="section-kicker">${escapeHTML(taskNames[m.task])} · ${m.year}</div><h2 id="dialog-title" class="dialog-title">${escapeHTML(m.name)}</h2><p class="dialog-paper-title">${escapeHTML(m.title)}</p><p class="dialog-authors">${escapeHTML(m.authors).replace(/ and /g,' · ')}</p>${m.description?`<p class="dialog-description">${escapeHTML(m.description.replace(/[.!?]$/,''))}.</p>`:''}<div class="dialog-meta"><span>${escapeHTML(m.family)}</span><span>${m.collection==='companion'?'Companion addition · '+escapeHTML(m.added_at):'Survey section '+escapeHTML(m.section)}</span>${m.publication_status?`<span>${escapeHTML(m.publication_status)}</span>`:''}${m.last_revised?`<span>Revised ${escapeHTML(m.last_revised)}</span>`:''}${m.featured?'<span>Selected timeline milestone</span>':''}</div><div class="dialog-actions">${externalLink(paperURL(m),safeURL(m.url)?'Read the paper ↗':'Find the paper ↗','button primary')}${hasCode(m)?externalLink(m.code_url,'Official code ↗','button code-button'):''}<button class="button" data-copy-record="${escapeHTML(m.id)}">Copy reference</button></div><p class="code-provenance">${hasCode(m)?`Code link verified ${escapeHTML(m.code_checked_at)} against ${externalLink(m.code_source,'the author-associated source')}. ${escapeHTML(m.code_note||'Availability has been checked. Results have not been independently reproduced.')}`:m.code_status==='Unavailable at verification'?`The author-listed repository was unavailable when checked on ${escapeHTML(m.code_checked_at)}.`:'No official code link has been verified in this index yet.'}</p>`;
+  $('#dialog-content').innerHTML=`<div class="section-kicker">${escapeHTML(taskNames[m.task])} · ${m.year}</div><h2 id="dialog-title" class="dialog-title">${escapeHTML(m.name)}</h2><p class="dialog-paper-title">${escapeHTML(m.title)}</p><p class="dialog-authors">${escapeHTML(m.authors).replace(/ and /g,' · ')}</p>${m.description?`<p class="dialog-description">${escapeHTML(m.description.replace(/[.!?]$/,''))}.</p>`:''}<div class="dialog-meta"><span>${escapeHTML(m.family)}</span><span>${m.collection==='companion'?'Companion addition · '+escapeHTML(m.added_at):'Survey section '+escapeHTML(m.section)}</span>${m.publication_status?`<span>${m.publication_source?externalLink(m.publication_source,m.publication_status+' ↗'):escapeHTML(m.publication_status)}</span>`:''}${m.last_revised?`<span>Revised ${escapeHTML(m.last_revised)}</span>`:''}${m.featured?'<span>Selected timeline milestone</span>':''}</div><div class="dialog-actions">${externalLink(paperURL(m),safeURL(m.url)?'Read the paper ↗':'Find the paper ↗','button primary')}${hasCode(m)?externalLink(m.code_url,m.code_format==='supplementary_zip'?'Official code (ZIP) ↗':'Official code ↗','button code-button'):''}<button class="button" data-copy-record="${escapeHTML(m.id)}">Copy reference</button></div><p class="code-provenance">${hasCode(m)?`Code link verified ${escapeHTML(m.code_checked_at)} against ${externalLink(m.code_source,'the author-associated source')}. ${escapeHTML(m.code_note||'Availability has been checked. Results have not been independently reproduced.')}`:m.code_status==='Unavailable at verification'?`The author-listed repository was unavailable when checked on ${escapeHTML(m.code_checked_at)}.`:escapeHTML(m.code_note||'No official code link has been verified in this index yet.')}</p>`;
   $('#method-dialog').showModal();
 }
 const benchmarkAreas = {
@@ -139,7 +140,7 @@ function benchmarkGroupHTML(group) {
   const selected=params.get('protocol');
   const current=group.tables.find(table=>table.id===selected)||group.tables.find(table=>table.id===benchmarkSelections.get(group.id))||group.tables[0];
   return `<article class="benchmark-card" id="benchmark-${escapeHTML(group.id)}" data-benchmark-area="${group.task}">
-    <header class="benchmark-card-header"><div><div class="benchmark-card-kicker">${escapeHTML(group.source.version)}<span>${group.tables.length} ${group.tables.length===1?'protocol':'protocols'}</span></div><h3>${escapeHTML(group.title)} <span>${escapeHTML(group.subtitle)}</span></h3><p>${escapeHTML(group.summary)}</p></div><div class="benchmark-source-links">${externalLink(group.source.paper_url,'Paper ↗')}${externalLink(group.source.code_url,'Benchmark code ↗')}</div></header>
+    <header class="benchmark-card-header"><div><div class="benchmark-card-kicker">${escapeHTML(group.source.version)}<span>${group.tables.length} ${group.tables.length===1?'protocol':'protocols'}</span></div><h3>${escapeHTML(group.title)} <span>${escapeHTML(group.subtitle)}</span></h3><p>${escapeHTML(group.summary)}</p></div><div class="benchmark-source-links">${externalLink(group.source.paper_url,'Paper ↗')}${externalLink(group.source.code_url,group.source.code_format==='supplementary_zip'?'Code (ZIP) ↗':'Benchmark code ↗')}</div></header>
     ${group.tables.length>1?`<div class="benchmark-tabs" role="group" aria-label="${escapeHTML(group.title)} evaluation setting">${group.tables.map(table=>`<button data-benchmark-group="${escapeHTML(group.id)}" data-benchmark-table="${escapeHTML(table.id)}" aria-pressed="${table===current}">${escapeHTML(table.label)}</button>`).join('')}</div>`:''}
     <div class="benchmark-table-panel" id="benchmark-panel-${escapeHTML(group.id)}">${benchmarkTableHTML(current,group)}</div>
   </article>`;
@@ -193,7 +194,7 @@ async function loadData() {
     if (embedded) data=JSON.parse(embedded.textContent);
     else {
       const names=['methods','results','protocols','sources','applicability','references','benchmarks'];
-      const values=await Promise.all(names.map(async name=>{const response=await fetch(`data/${name}.json`);if(!response.ok)throw new Error(`Cannot load ${name}`);return response.json();}));
+      const values=await Promise.all(names.map(async name=>{const response=await fetch(`data/${name}.json`,{cache:'no-cache'});if(!response.ok)throw new Error(`Cannot load ${name}`);return response.json();}));
       data=Object.fromEntries(names.map((name,i)=>[name,values[i]]));
     }
     $$('[data-method-count]').forEach(el=>el.textContent=data.methods.records.length);
@@ -202,6 +203,7 @@ async function loadData() {
     $$('[data-companion-count]').forEach(el=>el.textContent=data.methods.records.filter(m=>m.collection==='companion').length);
     $$('[data-snapshot]').forEach(el=>{el.textContent=new Date(data.methods.updated_at||data.methods.snapshot).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});});
     $$('[data-result-count]').forEach(el=>el.textContent=benchmarkEntryCount());
+    $$('[data-protocol-count]').forEach(el=>el.textContent=benchmarkTables().length);
     renderRoute();
   } catch(error) {$('#load-error').hidden=false;console.error('Research data could not be loaded',error);}
 }
@@ -241,7 +243,7 @@ document.addEventListener('click',event=>{
     }
   }
   if(target.dataset.method)showMethod(target.dataset.method);
-  if(target.dataset.copyRecord){const m=data.methods.records.find(m=>m.id===target.dataset.copyRecord);copyText(`${m.authors}. ${m.title}. ${m.year}.${m.url?' '+m.url:''}`);}
+  if(target.dataset.copyRecord){const m=data.methods.records.find(m=>m.id===target.dataset.copyRecord);copyText(`${m.authors}. ${m.title}. ${m.venue?m.venue+", ":""}${m.year}.${m.url?' '+m.url:''}`);}
   if(target.dataset.matrixTask){matrixTask=target.dataset.matrixTask;$$('[data-matrix-task]').forEach(el=>el.setAttribute('aria-pressed',String(el===target)));renderMatrix();}
 });
 $('.dialog-close').addEventListener('click',()=>$('#method-dialog').close());
