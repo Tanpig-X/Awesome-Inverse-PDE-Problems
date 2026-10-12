@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-10-12
+
+- Added three previously unlisted journal papers covering FEM–ELM inverse reconstruction, SkillPCF photonic inverse design, and surrogate-assisted morphing control. The archive now contains 210 studies.
+- Updated the existing Bayesian BiLO record to its Nature Communications accepted-article publication, preserving its original preprint and code provenance. This is a publication update, not an additional study.
+- Expanded the 2025–2026 publication collection from 79 to 83. The three additions have no verified public code links, so the author-associated code total remains 90.
+- Recorded primary sources, verification dates, and date precision. Journal issue dates are distinguished from online-publication dates.
+- Kept additions in the companion collection and synchronized website counts and README tables.
+
 ## 2026-10-11
 
 ### New literature additions
