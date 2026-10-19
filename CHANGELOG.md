@@ -2,6 +2,8 @@
 
 ## 2026-10-19
 
+- Added a dated fallback for counter-service outages. The last verified total is shown as saved, with a read-only recovery request and no repeated increment. Successful server responses are cached locally. The verified deployment snapshot was 16 views on 12 October 2026.
+
 - Added four previously unlisted journal studies: Bi-APNNs for kinetic inverse problems, PINNs for wave-potential recovery, NURBS thermal metasurface design, and truncated-rollout reinforcement learning for drainage control.
 - Expanded the archive from 210 to 214 studies and the 2025–2026 publication collection from 83 to 87. All additions are marked as companion entries.
 - Checked publisher and author sources for PDE relevance, authors, publication metadata, and duplicates. Journal issue dates retain their verified precision.
