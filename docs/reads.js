@@ -1,30 +1,30 @@
-/* Shared page views. Cache server observations only. Never increment locally. */
+/* Shared page loads persisted in the dedicated database. No local increments. */
 (() => {
   'use strict';
   const productionOrigin = 'https://tanpig-x.github.io';
   const productionPath = '/Awesome-Inverse-PDE-Problems/';
-  const namespace = 'tanpig-x.github.io';
-  const key = 'awesome-inverse-pde-problems';
-  const endpoint = `https://counterapi.com/api/${namespace}/view/${key}`;
-  const cacheKey = 'inverse-pde-shared-reads-v1';
-  // Observed in Safari during the 2026-10-12 deployment verification.
-  // This is an outage fallback, never a seed added to the server's total.
-  const verifiedSnapshot = {value: 16, observedAt: '2026-10-12', source: endpoint};
+  const page = productionOrigin + productionPath;
+  const endpoint = 'https://inverse-pde-reads.tiannini0707.chatgpt.site/api/reads';
+  const source = 'inverse-pde-d1-v1';
+  const startedOn = '2026-10-19';
+  const cacheKey = 'inverse-pde-shared-reads-v2';
   const onProduction = location.origin === productionOrigin &&
     [productionPath, productionPath + 'index.html'].some(path => path.toLowerCase() === location.pathname.toLowerCase());
   const isLocal = ['localhost', '127.0.0.1', ''].includes(location.hostname);
-  const render = (count, state, observedAt) => {
+  const render = (record, state) => {
     const saved = state === 'saved';
-    const label = count === null ? '—' : count.toLocaleString('en-US') + (saved ? '+' : '');
-    const date = observedAt && new Date(observedAt).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'});
-    const status = saved ? `Last verified ${date}. Live count unavailable.` : '';
+    const label = record ? record.value.toLocaleString('en-US') + (saved ? '+' : '') : '—';
+    const date = record && new Date(record.observedAt).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'});
+    const details = 'Page views since 19 Oct 2026. Earlier verified count: 16 on 12 Oct 2026, excluded from this total.';
     const description = state === 'ready'
-      ? `${label} shared page views. ${onProduction ? 'New page loads are counted. Switching sections is not.' : 'Preview only. This visit is not counted.'}`
-      : saved ? `${count.toLocaleString('en-US')} shared page views were verified on ${date}. Live count unavailable. Visits during the outage may not be recorded.`
+      ? `${label} shared page views. ${details} ${onProduction ? 'One event per page load. Switching sections is not counted.' : 'Preview only. This visit is not counted.'}`
+      : saved ? `${label} shared page views. Last verified ${date}. Live count temporarily unavailable. ${details}`
       : state === 'loading' ? 'Loading shared page views' : 'Shared page-view count is temporarily unavailable';
     document.querySelectorAll('[data-reads-count]').forEach(el => { el.textContent = label; });
     document.querySelectorAll('[data-reads-label]').forEach(el => { el.textContent = saved ? 'Reads (saved)' : 'Reads'; });
-    document.querySelectorAll('[data-reads-status]').forEach(el => { el.textContent = status; });
+    document.querySelectorAll('[data-reads-status]').forEach(el => {
+      el.textContent = (saved ? `Last verified ${date}. Live count unavailable. ` : state === 'unavailable' ? 'Live count unavailable. ' : '') + details;
+    });
     ['nav-reads-badge', 'footer-reads-badge'].forEach(id => {
       const badge = document.getElementById(id);
       if (!badge) return;
@@ -33,41 +33,44 @@
       badge.setAttribute('aria-label', description);
     });
   };
-  // Unrecognized mirrors do not call the owner's counter.
   if (!onProduction && !isLocal) { render(null, 'unavailable'); return; }
-  let lastVerified = verifiedSnapshot;
+  let lastVerified = null;
   try {
     const cached = JSON.parse(localStorage.getItem(cacheKey));
-    if (cached && cached.source === endpoint && Number.isSafeInteger(cached.value) && cached.value >= 0 &&
-        typeof cached.observedAt === 'string' && Date.parse(cached.observedAt) >= Date.parse(verifiedSnapshot.observedAt) &&
+    if (cached && cached.source === source && Number.isSafeInteger(cached.value) && cached.value >= 0 &&
+        typeof cached.observedAt === 'string' && Date.parse(cached.observedAt) >= Date.parse(startedOn) &&
         Date.parse(cached.observedAt) <= Date.now()) lastVerified = cached;
-  } catch { /* Storage may be unavailable in private browsing. */ }
+  } catch { /* Private browsing can disable storage. */ }
   render(null, 'loading');
-  async function requestCount(readOnly) {
+  const showSaved = () => render(lastVerified, lastVerified ? 'saved' : 'unavailable');
+  async function requestCount(method, eventId) {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
+    const timeout = setTimeout(() => controller.abort(), 7000);
     try {
-      // Omit readOnly on the single live hit. Even "false" suppresses counting.
-      const response = await fetch(endpoint + (readOnly ? '?readOnly=true' : ''), {
-        credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store', signal: controller.signal
+      const response = await fetch(endpoint, {
+        method, credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store', signal: controller.signal,
+        ...(method === 'POST' ? {headers: {'Content-Type': 'application/json'}, body: JSON.stringify({eventId, page})} : {})
       });
       if (!response.ok) throw new Error('Counter unavailable');
       const result = await response.json();
-      if (!result || !Number.isSafeInteger(result.value) || result.value < 0 ||
-          result.ns !== namespace || result.key !== key || result.action !== 'view') {
+      if (!result || result.success !== true || result.source !== source || result.page !== page ||
+          result.started_on !== startedOn || !Number.isSafeInteger(result.reads) || result.reads < 0) {
         throw new Error('Invalid counter response');
       }
-      lastVerified = {value: result.value, observedAt: new Date().toISOString(), source: endpoint};
-      try { localStorage.setItem(cacheKey, JSON.stringify(lastVerified)); } catch { /* Display still works. */ }
-      render(result.value, 'ready');
-    } finally {
-      clearTimeout(timeout);
-    }
+      lastVerified = {value: result.reads, observedAt: new Date().toISOString(), source};
+      try { localStorage.setItem(cacheKey, JSON.stringify(lastVerified)); } catch { /* Rendering still works. */ }
+      render(lastVerified, 'ready');
+    } finally { clearTimeout(timeout); }
   }
-  requestCount(!onProduction).catch(async () => {
-    render(lastVerified.value, 'saved', lastVerified.observedAt);
-    // The first request might have counted before its response was lost.
-    // Recover with one read-only request, never another increment.
-    try { await requestCount(true); } catch { /* Keep the dated, verified observation. */ }
-  });
+  async function update() {
+    // A fresh random ID belongs to this document only, never to a visitor.
+    const eventId = onProduction ? crypto.randomUUID() : null;
+    try { await requestCount(onProduction ? 'POST' : 'GET', eventId); return; } catch { showSaved(); }
+    if (onProduction) {
+      // The database deduplicates the same event if a response was lost.
+      try { await requestCount('POST', eventId); return; } catch { showSaved(); }
+    }
+    try { await requestCount('GET'); } catch { showSaved(); }
+  }
+  update().catch(showSaved);
 })();
