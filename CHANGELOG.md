@@ -2,6 +2,8 @@
 
 ## 2026-10-19
 
+- Replaced the unavailable CounterAPI service with a dedicated database-backed page-view service. Each document load uses a unique event ID, so retries do not double-count. Read-only checks and section changes do not increment the total. New counting starts on 19 October 2026. The earlier 16 verified views remain documented separately and are excluded from the new total.
+
 - Added a dated fallback for counter-service outages. The last verified total is shown as saved, with a read-only recovery request and no repeated increment. Successful server responses are cached locally. The verified deployment snapshot was 16 views on 12 October 2026.
 
 - Added four previously unlisted journal studies: Bi-APNNs for kinetic inverse problems, PINNs for wave-potential recovery, NURBS thermal metasurface design, and truncated-rollout reinforcement learning for drainage control.
