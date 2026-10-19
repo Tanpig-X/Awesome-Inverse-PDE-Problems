@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-10-19
+
+- Added four previously unlisted journal studies: Bi-APNNs for kinetic inverse problems, PINNs for wave-potential recovery, NURBS thermal metasurface design, and truncated-rollout reinforcement learning for drainage control.
+- Expanded the archive from 210 to 214 studies and the 2025–2026 publication collection from 83 to 87. All additions are marked as companion entries.
+- Checked publisher and author sources for PDE relevance, authors, publication metadata, and duplicates. Journal issue dates retain their verified precision.
+- No author-associated public code links were verified for these additions. The code-link total remains 90.
+- Synchronized website counts, README tables, and the update date. Existing records and quantitative benchmark data are unchanged.
+
 ## 2026-10-12
 
 - Added three previously unlisted journal papers covering FEM–ELM inverse reconstruction, SkillPCF photonic inverse design, and surrogate-assisted morphing control. The archive now contains 210 studies.
