@@ -12,9 +12,9 @@ Zhentao Tan, Yuze Hao, Boyi Zou, Mingsheng Long, Yi Yang, and Gang Bao.
   <img src="docs/assets/survey-overview.png" alt="A unified framework for PDE-governed inverse problems, inverse design, and control" width="900">
 </p>
 
-The website provides a searchable archive of **210 studies**, including **90 papers with author-associated code**, together with [benchmarks and quantitative comparisons](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-results) and [method applicability](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-applicability).
+The website provides a searchable archive of **214 studies**, including **90 papers with author-associated code**, together with [benchmarks and quantitative comparisons](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-results) and [method applicability](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-applicability).
 
-**Latest update · 12 October 2026:** Added three papers, one per task, and updated Bayesian BiLO to its Nature Communications publication. The archive now contains 210 studies, including 83 verified journal and conference publications from 2025–2026.
+**Latest update · 19 October 2026:** Added four journal papers spanning inverse coefficient recovery, thermal metasurface design, and drainage-network control. The archive now contains 214 studies, including 87 verified journal and conference publications from 2025–2026.
 
 ## Contents
 
@@ -32,7 +32,9 @@ Recover unknown parameters, fields, or dynamics from observations. [Browse all p
 
 | Year | Venue | Paper | Code |
 | --- | --- | --- | --- |
+| 2026 | Journal of Computational Physics | [Data-driven regularization for coefficient inverse problems in wave equations using partial observations](https://doi.org/10.1016/j.jcp.2026.115017) | — |
 | 2026 | Computer Methods in Applied Mechanics and Engineering | [Solving inverse parametrized problems via finite elements and extreme learning networks](https://doi.org/10.1016/j.cma.2026.119077) | — |
+| 2026 | Journal of Computational Physics | [A bi-fidelity based asymptotic-preserving neural network for the semiconductor Boltzmann equation and its inverse problem](https://doi.org/10.1016/j.jcp.2026.115076) | — |
 | 2026 | ICML | [Physics-Informed Diffusion Models in Spectral Space](https://proceedings.mlr.press/v306/gallon26a.html) | [Code](https://github.com/deeplearningmethods/PISD) |
 | 2026 | ICML | [Physics-Informed Distillation of Diffusion Models for PDE-Constrained Generation](https://proceedings.mlr.press/v306/zhang26gl.html) | — |
 | 2026 | ICML | [Di-BiLPS: Denoising induced Bidirectional Latent-PDE-Solver under Sparse Observations](https://proceedings.mlr.press/v306/li26dk.html) | [Code](https://github.com/Maxwell-996/Di-BiLPS) |
@@ -68,6 +70,7 @@ Find geometries, materials, or physical configurations that achieve a target res
 | Year | Venue | Paper | Code |
 | --- | --- | --- | --- |
 | 2026 | Knowledge-Based Systems | [Learning design skills as memory policies for agentic photonic inverse design](https://www.sciencedirect.com/science/article/pii/S0950705126014528) | — |
+| 2026 | International Journal of Thermal Sciences | [Inverse design of NURBS metasurfaces via deep learning for angular thermal emission control](https://doi.org/10.1016/j.ijthermalsci.2026.110988) | — |
 | 2026 | npj Computational Materials | [Physics-guided diffusion models for inverse design of disordered metamaterials](https://www.nature.com/articles/s41524-026-02328-y) | [Code](https://github.com/CMSL-HKUST/physics-guidance) |
 | 2026 | IEEE Transactions on Evolutionary Computation | [Neural Operator-enabled Topology-informed Evolutionary Strategy for PDE-Constrained Optimization](https://ieeexplore.ieee.org/document/11618686/) | [Code](https://github.com/xmh3698/notes-pde-opt) |
 | 2026 | Nature Computational Science | [Generative model for information metamaterial design](https://www.nature.com/articles/s43588-026-01025-6) | [Code](https://doi.org/10.24433/CO.0515873.v2) |
@@ -103,6 +106,7 @@ Learn actions and policies that steer PDE-governed systems toward a desired stat
 
 | Year | Venue | Paper | Code |
 | --- | --- | --- | --- |
+| 2026 | Water Research | [Efficient reinforcement learning for urban drainage control via a neural network-based model using truncated and parallel rollouts](https://doi.org/10.1016/j.watres.2026.126458) | — |
 | 2026 | Aerospace Science and Technology | [Adaptive morphing control method for variable-sweep aircraft based on deep reinforcement learning](https://www.sciencedirect.com/science/article/pii/S1270963826006735) | — |
 | 2026 | Nature | [The HydroGym reinforcement learning platform for fluid dynamics](https://www.nature.com/articles/s41586-026-10917-6) | [Code](https://github.com/dynamicslab/hydrogym) |
 | 2026 | Journal of Fluid Mechanics | [Combining reinforcement learning and computational fluid dynamics for optimal kinematics of a robotic vertical-axis wind turbine](https://doi.org/10.1017/jfm.2026.11811) | — |
