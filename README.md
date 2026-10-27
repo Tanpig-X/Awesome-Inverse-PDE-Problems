@@ -12,9 +12,9 @@ Zhentao Tan, Yuze Hao, Boyi Zou, Mingsheng Long, Yi Yang, and Gang Bao.
   <img src="docs/assets/survey-overview.png" alt="A unified framework for PDE-governed inverse problems, inverse design, and control" width="900">
 </p>
 
-The website provides a searchable archive of **214 studies**, including **90 papers with author-associated code**, together with [benchmarks and quantitative comparisons](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-results) and [method applicability](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-applicability).
+The website provides a searchable archive of **218 studies**, including **92 papers with author-associated code**, together with [benchmarks and quantitative comparisons](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-results) and [method applicability](https://tanpig-x.github.io/Awesome-Inverse-PDE-Problems/#view-applicability).
 
-**Latest update · 19 October 2026:** Added four journal papers spanning inverse coefficient recovery, thermal metasurface design, and drainage-network control. The archive now contains 214 studies, including 87 verified journal and conference publications from 2025–2026.
+**Latest update · 26 October 2026:** Added four verified journal studies on flow reconstruction, nanophotonic and MEMS inverse design, and active flow control, with two author-associated code repositories. The archive now contains 218 studies, including 91 journal and conference publications from 2025–2026.
 
 ## Contents
 
@@ -32,6 +32,7 @@ Recover unknown parameters, fields, or dynamics from observations. [Browse all p
 
 | Year | Venue | Paper | Code |
 | --- | --- | --- | --- |
+| 2026 | Nature Machine Intelligence | [Lagrangian–Eulerian learning of flow field and trajectories with TrajectoryFlowNet](https://www.nature.com/articles/s42256-026-01316-7) | [Code](https://github.com/WanJingdi/TrajectoryFlowNet) |
 | 2026 | Journal of Computational Physics | [Data-driven regularization for coefficient inverse problems in wave equations using partial observations](https://doi.org/10.1016/j.jcp.2026.115017) | — |
 | 2026 | Computer Methods in Applied Mechanics and Engineering | [Solving inverse parametrized problems via finite elements and extreme learning networks](https://doi.org/10.1016/j.cma.2026.119077) | — |
 | 2026 | Journal of Computational Physics | [A bi-fidelity based asymptotic-preserving neural network for the semiconductor Boltzmann equation and its inverse problem](https://doi.org/10.1016/j.jcp.2026.115076) | — |
@@ -69,6 +70,8 @@ Find geometries, materials, or physical configurations that achieve a target res
 
 | Year | Venue | Paper | Code |
 | --- | --- | --- | --- |
+| 2026 | Microsystems & Nanoengineering | [A fabrication-aware vectorized generative representation for topology optimization of path-defined MEMS microstructures](https://www.nature.com/articles/s41378-026-01470-3) | — |
+| 2026 | Nanophotonics | [Neural Adjoint Inverse Design of Three‐Dimensional Nanophotonic Devices](https://doi.org/10.1002/nap2.70334) | — |
 | 2026 | Knowledge-Based Systems | [Learning design skills as memory policies for agentic photonic inverse design](https://www.sciencedirect.com/science/article/pii/S0950705126014528) | — |
 | 2026 | International Journal of Thermal Sciences | [Inverse design of NURBS metasurfaces via deep learning for angular thermal emission control](https://doi.org/10.1016/j.ijthermalsci.2026.110988) | — |
 | 2026 | npj Computational Materials | [Physics-guided diffusion models for inverse design of disordered metamaterials](https://www.nature.com/articles/s41524-026-02328-y) | [Code](https://github.com/CMSL-HKUST/physics-guidance) |
@@ -106,6 +109,7 @@ Learn actions and policies that steer PDE-governed systems toward a desired stat
 
 | Year | Venue | Paper | Code |
 | --- | --- | --- | --- |
+| 2026 | Engineering Applications of Artificial Intelligence | [A framework for realisable data-driven active flow control using model predictive control applied to a simplified truck wake](https://doi.org/10.1016/j.engappai.2026.115580) | [Code](https://github.com/eaplab/A-framework-for-realisable-data-driven-active-flow-control-using-model-predictive-control) |
 | 2026 | Water Research | [Efficient reinforcement learning for urban drainage control via a neural network-based model using truncated and parallel rollouts](https://doi.org/10.1016/j.watres.2026.126458) | — |
 | 2026 | Aerospace Science and Technology | [Adaptive morphing control method for variable-sweep aircraft based on deep reinforcement learning](https://www.sciencedirect.com/science/article/pii/S1270963826006735) | — |
 | 2026 | Nature | [The HydroGym reinforcement learning platform for fluid dynamics](https://www.nature.com/articles/s41586-026-10917-6) | [Code](https://github.com/dynamicslab/hydrogym) |

@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-10-26
+
+- Added four verified journal studies: TrajectoryFlowNet for sparse-observation flow reconstruction, neural-adjoint SW-FNO for three-dimensional nanophotonic design, fabrication-aware MEMS topology design, and surface-sensor LSTM-MPC for active flow control.
+- Expanded the archive from 214 to 218 studies and the 2025–2026 publication collection from 87 to 91. All additions are companion entries with primary-source metadata and verification dates.
+- Added the publisher-linked TrajectoryFlowNet and LSTM-MPC repositories, bringing the author-associated code total from 90 to 92. Public source files were checked without claiming reproduction.
+- Distinguished online-publication dates, issue dates and earlier preprints. The MEMS article offers code on request, so it has no public Code link.
+- Synchronized README tables, website counts and the update date. Quantitative benchmark data, branding and the page-view service are unchanged.
+
 ## 2026-10-19
 
 - Replaced the unavailable CounterAPI service with a dedicated database-backed page-view service. Each document load uses a unique event ID, so retries do not double-count. Read-only checks and section changes do not increment the total. New counting starts on 19 October 2026. The earlier 16 verified views remain documented separately and are excluded from the new total.
