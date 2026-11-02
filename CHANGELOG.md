@@ -1,5 +1,13 @@
 # Change log
 
+## 2026-11-02
+
+- Added three verified journal studies: SURGIN for subsurface multiphase-flow inversion, reinforcement learning for thermal metamaterial design, and PPO for airfoil pitching-moment control.
+- Expanded the archive from 218 to 221 studies and the 2025–2026 publication collection from 91 to 94. All three additions are companion entries with source metadata and verification dates.
+- Added three author-associated code links, bringing the total from 92 to 95. Checked public source files and documented the author or publisher association without claiming reproduction.
+- Recorded SURGIN's earlier 2025 preprint and October 2026 issue month. Distinguished the airfoil paper's 23 October 2026 online date from its January 2027 issue assignment.
+- Synchronized README tables, website counts and the update date. Quantitative benchmark data, branding and the page-view service are unchanged.
+
 ## 2026-10-26
 
 - Added four verified journal studies: TrajectoryFlowNet for sparse-observation flow reconstruction, neural-adjoint SW-FNO for three-dimensional nanophotonic design, fabrication-aware MEMS topology design, and surface-sensor LSTM-MPC for active flow control.
